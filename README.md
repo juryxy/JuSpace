@@ -14,7 +14,7 @@ This is the repository for the JuSpace toolbox allowing for cross-modal correlat
           
           Please contact me at juergen.dukart@gmail.com for reports on bugs or other questions with respect to the toolbox
  
-          PET data sources are listed in "Sources_templates_release.txt"
+          PET and SPECT data sources are listed in "Sources_templates_release.txt". Please cite the sources corresponding to respective           PET or SPECT maps
 
  
 --------------------------------------------------------------------
