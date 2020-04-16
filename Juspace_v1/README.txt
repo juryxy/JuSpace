@@ -19,9 +19,10 @@ INTRODUCTION:
 JuSpace is a software package for the integration of different imaging modalities with positron emission tomography derived neurophysiological measures.
 The toolbox is written for Matlab 2017b and following (The Mathworks Insc., MA, USA). It further requires SPM12 to be installed (https://www.fil.ion.ucl.ac.uk/spm/software/spm12/)
 Although it has been designed on a Windows platform, it can be used on any other OS like Unix or Linux where the Matlab package and the Stats toolbox are installed.
+All PET and SPECT maps are free for non-commercial distribution 
 
 GETTING STARTED:
-Once the program is unpackaged in its directory, start Matlab. Use the ‘current directory’ tab to go to the JuSpace directory and type
+Once the program is unpackaged in its directory, start Matlab. Use the â€˜current directoryâ€™ tab to go to the JuSpace directory and type
 >>JuSpace
 
 The user interface should appear.
