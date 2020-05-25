@@ -168,11 +168,11 @@ end
     % opt_comp = 6 --> pair-wise difference list 1 to list 2
     % opt_comp = 7 --> ind z-scores from list 1
  switch opts(1)
-     case {1,2,3} 
+     case {1,2,3,4} 
      res = res_ind;
      p_all  = stats.p_ind;
      
-     case {4,5,6,7}
+     case {5,6,7}
      res = mean(res_ind);
      [h,p_all,ci] = ttest(res_ind);
      stats.ci95 = ci;
