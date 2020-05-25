@@ -33,4 +33,6 @@ The user interface should appear.
 Alternative the computing function "compute_DomainGauges" can be called directly, see help for this function on its usage
 To compute exact permutation based p-values for within and between-subject designs the function "compute_exact_pvalue" needs to be called. The function requires inputs provided by the "compute_DomainGauges" function
 
-25.05.2020 - fixed some visualization color mismatch for linux, - fixed some setting for computational option 4
+25.05.2020 
+- fixed some visualization color mismatch for linux, 
+- fixed a setting for computational option 4 (list 1 each image) and option 8 (allowing to test correlation distribution for all files from list 1 against null)
