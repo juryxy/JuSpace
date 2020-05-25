@@ -286,8 +286,9 @@ if length(filesPET)<3
 else
     h1 = figure('Position',[400 400 length(filesPET).*120 500]);
 end
-bar(1:length(filesPET),diag(m_x),0.9,'stacked');
-colormap(bar_color)
+
+h2 = bar(1:length(filesPET),diag(m_x),0.9,'stacked');
+%colormap(bar_color)
 % bar(handles.plot_bars, 1:length(filesPET),m_x,0.9,'EdgeColor',bar_edge);
 hold('on');
 
@@ -298,6 +299,7 @@ vv2 = vv(:);
 
 for i = 1:length(filesPET)
     if opt_comp>=4
+        set(h2(i),'facecolor',bar_color(i,:))
         plot(x_n_n(ind_plot==i),vv2(ind_plot==i),'o','MarkerSize',8,'MarkerFaceColor',bar_color(i,:),'MarkerEdgeColor',error_color,'LineWidth',1);
     end
 end
