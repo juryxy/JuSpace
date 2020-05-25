@@ -13,6 +13,8 @@ function [res,p_all,stats,data, D1,D2,data_PET,Resh] = compute_DomainGauges(list
     % option(1) = 5 --> ind z-score list 1 to list 2
     % option(1) = 6 --> pair-wise difference list 1 to list 2
     % options(1) = 7 --> leave one out from list 1
+    % options(1) = 8 --> list 1 each compares against null distribution of
+    % correlation coefficients
 % second index indicates the analysis option
     % option(2) = 1 --> % Spearman correlation
     % option(2) = 2 --> % Pearson correlation
@@ -66,6 +68,8 @@ switch options(1)
     % opt_comp = 5 --> ind z-score list 1 to list 2
     % opt_comp = 6 --> pair-wise difference list 1 to list 2
     % opt_comp = 7 --> ind z-scores from list 1
+    % opt_comp = 8 --> list 1 each compares against null distribution of
+    % correlation coefficients
     case 1 % Cohen's d between groups
         m_D1 = mean(D1);
         std_D1 = std(D1);
@@ -95,7 +99,8 @@ switch options(1)
             data_z = D1([1:i-1 i+1:end],:);
             data(i,:) = (data_i-mean(data_z))./std(data_z);
         end
-     
+    case 8
+        data = D1;
 end
 
 % if options(2) == 3 % 1 = Spearman, 2 = Pearson, 3 = multiple linear regression
@@ -167,12 +172,14 @@ end
     % opt_comp = 5 --> ind z-score list 1 to list 2
     % opt_comp = 6 --> pair-wise difference list 1 to list 2
     % opt_comp = 7 --> ind z-scores from list 1
+    % opt_comp = 8 --> list 1 each compares against null distribution of
+    % correlation coefficients
  switch opts(1)
      case {1,2,3,4} 
      res = res_ind;
      p_all  = stats.p_ind;
      
-     case {5,6,7}
+     case {5,6,7,8}
      res = mean(res_ind);
      [h,p_all,ci] = ttest(res_ind);
      stats.ci95 = ci;
@@ -204,6 +211,9 @@ switch options(1)
         ff = 'Delta';
     case 7
         ff = 'Z-score loo';
+    case 8
+        ff = 'List 1 all against null';
+        
 end
 
 switch options(2)

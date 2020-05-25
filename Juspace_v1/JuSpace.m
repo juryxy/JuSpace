@@ -22,7 +22,7 @@ function varargout = JuSpace(varargin)
 
 % Edit the above text to modify the response to help JuSpace
 
-% Last Modified by GUIDE v2.5 28-Jan-2020 11:47:28
+% Last Modified by GUIDE v2.5 25-May-2020 15:47:26
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -107,6 +107,8 @@ opt_comp = find([handles.Opt_comp.Children.Value]==1);
 % opt_comp = 5 --> ind z-score list 1 to list 2
 % opt_comp = 6 --> pair-wise difference list 1 to list 2
 % opt_comp = 7 --> ind loo z-scores from list 1
+% opt_comp = 8 --> list 1 each compares against null distribution of
+% correlation coefficients
 opt_ana = find([handles.Ana_opt.Children.Value]==1);
 opt_perm = get(handles.opt_perm,'Value');
 Nperm = str2num(get(handles.nperm,'String'));
@@ -128,6 +130,8 @@ switch options(1)
         file_part = [file_part '_pwDiff'];
     case 7
         file_part = [file_part '_looList1'];
+    case 8
+        file_part = [file_part '_List1EachGroupTest'];
 end
 
 switch options(2)
@@ -152,7 +156,7 @@ if isempty(list1)
     return
 end
 
-if and(~ismember(opt_comp,[3,4,7]),isempty(list2))
+if and(~ismember(opt_comp,[3,4,7,8]),isempty(list2))
     f = msgbox('This option requires files to be selected for list 2');
     return
 end
@@ -232,6 +236,10 @@ switch options(1)
         ff = 'Delta';
     case 7
         ff = 'Z-score loo';
+    case 7
+        ff = 'Z-score loo';
+    case 8
+        ff = 'List 1 all against null';
 end
 
 
@@ -261,8 +269,9 @@ for i = 1:length(filesPET)
    end
    
    x_n_n(ind_plot==i) = ind_plot(ind_plot==i) + 1.*(rand(size_y_xi,1)-0.5).*y_dist_inv;
-   m_x(i) = mean(all_i);
-   std_x(i,1) = 1.95996.*std(all_i)./sqrt(length(all_i));
+   all_ii = all_i(~isinf(all_i));
+   m_x(i) = mean(all_ii);
+   std_x(i,1) = 1.95996.*std(all_ii)./sqrt(length(all_ii));
 %    if opt_comp>=4
 %        
 %    end
@@ -659,3 +668,10 @@ function nperm_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes during object creation, after setting all properties.
+function Opt_comp_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to Opt_comp (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
