@@ -1,4 +1,4 @@
-function [res,p_all,stats,data, D1,D2,data_PET,Resh] = compute_DomainGauges(list1,list2,files_PET,atlas, options,image_save)
+function [res,p_all,stats,data, D1,D2,data_PET,Resh,T1] = compute_DomainGauges(list1,list2,files_PET,atlas, options,image_save)
 % [res,p_all,stats,data, D1,D2,data_PET] = compute_DomainGauges(list1,list2,files_PET,atlas, options, image_save)
 % Inputs:
 % list1, list2, files_PET are cellarrays of strings containing the filepath
@@ -58,7 +58,12 @@ end
 
 data_PET = mean_time_course(files_PET,atlas,atlas_vals);
 
-
+if options(4)==1 % adjust for structural correlation
+    path_T1 = fullfile(fileparts(which('spm')),'tpm','TPM.nii,1');
+    T1 =  mean_time_course({path_T1},atlas, atlas_vals); 
+else
+    T1 = '';
+end
 
 switch options(1)
     % opt_comp = 1 --> es between
@@ -106,7 +111,11 @@ end
 % if options(2) == 3 % 1 = Spearman, 2 = Pearson, 3 = multiple linear regression
 %     [res,p_all,stats] = correlateModalities(data,data_PET, options(2));
 % else
-[res,p_all,stats] = correlateModalities(data,data_PET, options);
+if options(4)==1
+    [res,p_all,stats] = correlateModalities(data,data_PET,options,T1);
+else 
+    [res,p_all,stats] = correlateModalities(data,data_PET,options);
+end
 % end
 [Resh] = reshape_res(options,res,p_all, files_PET,list1);
     a = 1;
@@ -122,14 +131,18 @@ end
     end
 end
 
-function [res,p_all,stats] = correlateModalities(data,data_PET,opts)
+function [res,p_all,stats] = correlateModalities(data,data_PET,opts,T1)
     
 
 for i = 1:size(data,1)
     switch opts(2)
         case 1 % Spearman correlation
             for j = 1:size(data_PET,1)
+                if opts(4)==1
+                    [r,p] = partialcorr(data(i,:)',data_PET(j,:)',T1','type','Spearman');
+                else
                     [r,p] = corr(data(i,:)',data_PET(j,:)','type','Spearman');
+                end
                     corrOrig(i,j) = r;
                     p_ind(i,j) = p;
             end
@@ -141,7 +154,11 @@ for i = 1:size(data,1)
             
         case 2 % Pearson correlation
             for j = 1:size(data_PET,1)
+                if opts(4)==1
+                    [r,p] = partialcorr(data(i,:)',data_PET(j,:)',T1','type','Pearson');
+                else
                     [r,p] = corr(data(i,:)',data_PET(j,:)','type','Pearson');
+                end
                     corrOrig(i,j) = r;
                     p_ind(i,j) = p;
             end 
@@ -152,15 +169,25 @@ for i = 1:size(data,1)
         
         case 3 % multiple linear regresion
             y = data(i,:)';
-            X = [data_PET'];
-
+            if opts(4)==1
+                X = [data_PET' T1'];
+                ind_PET = 2:size(X,2);
+            else
+                X = [data_PET'];
+                ind_PET = 2:size(X,2)+1;
+            end
+            
+            
             Stats = regstats(y,X);
-            res_ind(i,:) = Stats.beta(2:end)';
-            stats.res_ind(i,:) = Stats.beta(2:end)';
+            res_ind(i,:) = Stats.beta(ind_PET)';
+            stats.res_ind(i,:) = Stats.beta(ind_PET)';
             stats.ind(i).p_ftest_full = Stats.fstat.pval;
             stats.ind(i).f_ftest_full = Stats.fstat.f;
             stats.ind(i).t_all = Stats.tstat.t;
-            stats.p_ind(i,:) = Stats.tstat.pval(2:end)';
+            stats.p_ind(i,:) = Stats.tstat.pval(ind_PET)';
+
+            
+
 
     end
 end

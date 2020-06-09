@@ -22,7 +22,7 @@ function varargout = JuSpace(varargin)
 
 % Edit the above text to modify the response to help JuSpace
 
-% Last Modified by GUIDE v2.5 25-May-2020 15:47:26
+% Last Modified by GUIDE v2.5 28-May-2020 11:45:53
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -111,8 +111,9 @@ opt_comp = find([handles.Opt_comp.Children.Value]==1);
 % correlation coefficients
 opt_ana = find([handles.Ana_opt.Children.Value]==1);
 opt_perm = get(handles.opt_perm,'Value');
+opt_auto = get(handles.opt_autocorr_T1,'Value');
 Nperm = str2num(get(handles.nperm,'String'));
-options = [opt_comp; opt_ana; opt_perm];
+options = [opt_comp; opt_ana; opt_perm; opt_auto];
 
 file_part = '';
 switch options(1)
@@ -207,15 +208,15 @@ file_save = fullfile(dir_save,[name_save file_part '_' time_now '.mat']);
 
 if options(1)<4
     image_save = fullfile(dir_save,[name_save file_part '_' time_now '.nii']);
-    [res,p_all,stats,data,D1,D2, data_PET,Resh] = compute_DomainGauges(list1,list2,filesPET,atlas, options,image_save);
+    [res,p_all,stats,data,D1,D2, data_PET,Resh,T1] = compute_DomainGauges(list1,list2,filesPET,atlas, options,image_save);
 else
-    [res,p_all,stats,data,D1,D2, data_PET,Resh] = compute_DomainGauges(list1,list2,filesPET,atlas, options);
+    [res,p_all,stats,data,D1,D2, data_PET,Resh,T1] = compute_DomainGauges(list1,list2,filesPET,atlas, options);
 end
 %
 opt_for_perm = [1,2,5,6];
 if options(3)==1 && ismember(options(1),opt_for_perm) && options(2)~=3
     disp('Computing exact p-value');
-   [p_exact,dist_r] = compute_exact_pvalue(D1,D2,data_PET,res,Nperm,options);
+   [p_exact,dist_r] = compute_exact_pvalue(D1,D2,data_PET,res,Nperm,options,T1);
    Resh(:,end+1) = [{'p_exact'}; num2cell_my(p_exact')];
 end
 
@@ -307,8 +308,8 @@ vv = vals_plot';
 vv2 = vv(:);
 
 for i = 1:length(filesPET)
+    set(h2(i),'facecolor',bar_color(i,:));
     if opt_comp>=4
-        set(h2(i),'facecolor',bar_color(i,:))
         plot(x_n_n(ind_plot==i),vv2(ind_plot==i),'o','MarkerSize',8,'MarkerFaceColor',bar_color(i,:),'MarkerEdgeColor',error_color,'LineWidth',1);
     end
 end
@@ -320,9 +321,9 @@ end
 
 
 
-if opt_ana<3
-   ylim([-1 1]);
-end
+% if opt_ana<3
+%    ylim([-1 1]);
+% end
 
 
 % t = findall(gcf,'Type','Axes');
@@ -460,7 +461,13 @@ function selectatlas_Callback(hObject, eventdata, handles)
 % hObject    handle to selectatlas (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+dir_cd = cd;
+path = fileparts(which('JuSpace'));
+path_atlas = fullfile(path,'atlas');
+cd(path_atlas);
 files_atlas = cellstr(spm_select(1,'image','Select atlas file you would like to use'));
+cd(dir_cd);
+
 if ~isemptycell(files_atlas)
     set(handles.atlaslist,'String',files_atlas);
 end
@@ -675,3 +682,12 @@ function Opt_comp_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to Opt_comp (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
+
+
+% --- Executes on button press in opt_autocorr_T1.
+function opt_autocorr_T1_Callback(hObject, eventdata, handles)
+% hObject    handle to opt_autocorr_T1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of opt_autocorr_T1

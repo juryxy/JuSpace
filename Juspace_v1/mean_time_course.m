@@ -21,7 +21,6 @@ for i =1:size_data(1,1)
         if numel(vectorROI)==numel(vector_vol)
             for j = 1:length(numberROIs)
                 Reg_j = vector_vol(round(vectorROI) == numberROIs(j));
-                Reg_j = Reg_j(Reg_j~=0);
                 Reg_all(j) = length(Reg_j);
                 D(i,j)= mean(removenan_my(Reg_j,':'));
                 %disp([num2str(length(Reg_j)) ' voxels found for file ' num2str(i)  ' region ID ' num2str(numberROIs(j)) ': ' num2str(D(i,j))]);

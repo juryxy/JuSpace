@@ -1,5 +1,5 @@
-function [p_exact,dist_rand] = compute_exact_pvalue(D1,D2,data_PET,res,Nperm,options)
-% function [p_exact,dist_rand] = compute_exact_pvalue(D1,D2,data_PET,res,Nperm,options)
+function [p_exact,dist_rand] = compute_exact_pvalue(D1,D2,data_PET,res,Nperm,options,T1)
+% function [p_exact,dist_rand] = compute_exact_pvalue(D1,D2,data_PET,res,Nperm,options,T1)
 % the functions allow to compute exact p-values based on the output from
 % the compute_DomainGauges function, see help for this function for the
 % input parameters
@@ -26,6 +26,12 @@ N1_g2 = N-N1_g1;
 N2_g1 = round(N2.*N./(N+N2));
 N2_g2 = N2-N2_g1;
 
+% if options(4)==1 % adjust for structural correlation
+%     path_T1 = fullfile(fileparts(which('spm')),'tpm','TPM.nii,1');
+%     T1 =  mean_time_course({path_T1},atlas, atlas_vals); 
+% end
+
+
 v = [ones(floor(N./2),1); 2.*ones(floor(N./2)+1,1)];
 for i = 1:Nperm
     
@@ -35,11 +41,6 @@ for i = 1:Nperm
 %     i_r = randi(2,size(D1,1),1); 
     switch options(1) %orthogonal permutations
         case {2,6}
-%             ord_i = randi(2,N,1); % non-orthogonal permutations
-%             D1_i(ord_i==1,:) = D1(ord_i==1,:);
-%             D1_i(ord_i==2,:) = D2(ord_i==2,:);
-%             D2_i(ord_i==2,:) = D1(ord_i==2,:);
-%             D2_i(ord_i==1,:) = D2(ord_i==1,:);
             ord_i = randperm(N)'; %orthogonal permutations
             i_r = v(ord_i); %orthogonal permutations
             D1_i(i_r==1,:) = D1(i_r==1,:);
@@ -55,26 +56,9 @@ for i = 1:Nperm
             D2_i(N2_g1+1:end,:) = D2(ord_i2(N1_g2+1:end),:);
     end
     
-%     switch options(1) % computes difference, z-score or effect size
-%         case 1 % Cohen's d between groups
-%             m_D1 = mean(D1_i);
-%             std_D1 = std(D1_i);
-%             m_D2 = mean(D2_i);
-%             std_D2 = std(D2_i);
-%             data = (m_D1-m_D2)./sqrt((std_D1.^2+std_D2.^2)./2);
-%         case 2 % Cohen's d within group change
-%             delta_d = D1_i-D2_i;
-%             data = mean(delta_d)./std(delta_d);
-% 
-%         case 5 % compute z-score list 1 relative to list 2
-%             m_D2 = mean(D2_i);
-%             std_D2 = std(D2_i);
-%             data = (D1_i - repmat(m_D2,size(D1,1),1))./repmat(std_D2,size(D1_i,1),1);
-%         case 6 % pair-wise differences list 1 - list 2
-%             data = D1_i - D2_i;
-%     end
+
 switch options(1)
-  case 1 % Cohen's d between groups
+   case 1 % Cohen's d between groups
         m_D1 = mean(D1_i);
         std_D1 = std(D1_i);
         m_D2 = mean(D2_i);
@@ -103,30 +87,36 @@ switch options(1)
             data_z = D1_i([1:i-1 i+1:end],:);
             data(i,:) = (data_i-mean(data_z))./std(data_z);
         end   
+    case 8
+        data = D1_i;
 end
     
-    switch options(1) % computes correlations
-        case {1,2}
-            if options(2)==1
-                [r_es] = corr(data',data_PET','type','Spearman');
-                r_all(i,:) = fishers_r_to_z(r_es);                
-            elseif options(2)==2
-                [r_es] = corr(data',data_PET','type','Pearson');
-                r_all(i,:) = fishers_r_to_z(r_es);
-            else
-                disp('Exact permuation is not supported for this option');
-            end
-        case {5,6}
-            if options(2)==1
-                [r_ind] = corr(data',data_PET','type','Spearman');
-                r_all(i,:) = mean(fishers_r_to_z(r_ind));
-            elseif options(2)==2
-                [r_ind] = corr(data',data_PET','type','Pearson');
-                r_all(i,:) = mean(fishers_r_to_z(r_ind));
-            else
-                disp('Exact permuation is not supported for this option');
-            end
+  
+if options(2)==1
+    if options(4)==1
+        [r_es] = partialcorr(data',data_PET',T1','type','Spearman');   
+    else
+        [r_es] = corr(data',data_PET','type','Spearman');   
     end
+elseif options(2)==2
+    if options(4)==1
+        [r_es] = partialcorr(data',data_PET',T1','type','Pearson');
+    else
+        [r_es] = corr(data',data_PET','type','Pearson');
+    end
+else
+    disp('Exact permutation is not supported for this option');
+    break;
+end
+         
+rr = fishers_r_to_z(r_es);
+switch options(1) % computes correlations
+    case {1,2}
+        r_all(i,:) = rr;
+    case {5,6}
+        r_all(i,:) = mean(rr);
+end
+
 end
 
 p_exact = (sum(abs(r_all)>=abs(res))+1)./(length(r_all)+1);
