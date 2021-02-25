@@ -1,5 +1,5 @@
 function [filt_dat,ind_filt] = removenan_my(data,col_ids)
-
+% function [filt_dat,ind_filt] = removenan_my(data,col_ids)
 if ~exist('col_ids','var')
     col_ids = ':';
 end

@@ -139,12 +139,14 @@ for i = 1:size(data,1)
         case 1 % Spearman correlation
             for j = 1:size(data_PET,1)
                 if opts(4)==1
-                    [r,p] = partialcorr(data(i,:)',data_PET(j,:)',T1','type','Spearman');
+                    data_ij = removenan_my([data',data_PET',T1']);
+                    [r,p] = partialcorr(data_ij(:,1:size(data',2)),data_ij(:,size(data',2)+1:size(data',2)+size(data_PET',2)),data_ij(:,size(data',2)+size(data_PET',2)+1:end),'type','Spearman');
                 else
-                    [r,p] = corr(data(i,:)',data_PET(j,:)','type','Spearman');
+                    data_ij = removenan_my([data',data_PET']);
+                    [r,p] = corr(data_ij(:,1:size(data',2)),data_ij(:,size(data',2)+1:size(data',2)+size(data_PET',2)),'type','Spearman');
                 end
-                    corrOrig(i,j) = r;
-                    p_ind(i,j) = p;
+                    corrOrig = r;
+                    p_ind = p;
             end
             res_ind = fishers_r_to_z(corrOrig);
             stats.corrOrig = corrOrig;
@@ -155,12 +157,14 @@ for i = 1:size(data,1)
         case 2 % Pearson correlation
             for j = 1:size(data_PET,1)
                 if opts(4)==1
-                    [r,p] = partialcorr(data(i,:)',data_PET(j,:)',T1','type','Pearson');
+                    data_ij = removenan_my([data',data_PET',T1']);
+                    [r,p] = partialcorr(data_ij(:,1:size(data',2)),data_ij(:,size(data',2)+1:size(data',2)+size(data_PET',2)),data_ij(:,size(data',2)+size(data_PET',2)+1:end),'type','Pearson');
                 else
-                    [r,p] = corr(data(i,:)',data_PET(j,:)','type','Pearson');
+                    data_ij = removenan_my([data',data_PET']);
+                    [r,p] = corr(data_ij(:,1:size(data',2)),data_ij(:,size(data',2)+1:size(data',2)+size(data_PET',2)),'type','Pearson');
                 end
-                    corrOrig(i,j) = r;
-                    p_ind(i,j) = p;
+                    corrOrig = r;
+                    p_ind = p;
             end 
             res_ind = fishers_r_to_z(corrOrig);
             stats.corrOrig = corrOrig;
@@ -168,6 +172,7 @@ for i = 1:size(data,1)
             stats.res_ind = res_ind;
         
         case 3 % multiple linear regresion
+            
             y = data(i,:)';
             if opts(4)==1
                 X = [data_PET' T1'];
@@ -177,7 +182,9 @@ for i = 1:size(data,1)
                 ind_PET = 2:size(X,2)+1;
             end
             
-            
+            dd = removenan_my([y X]);
+            y = dd(:,1);
+            X = dd(:,2:end);
             Stats = regstats(y,X);
             res_ind(i,:) = Stats.beta(ind_PET)';
             stats.res_ind(i,:) = Stats.beta(ind_PET)';

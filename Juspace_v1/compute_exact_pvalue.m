@@ -12,6 +12,8 @@ function [p_exact,dist_rand] = compute_exact_pvalue(D1,D2,data_PET,res,Nperm,opt
     % option(1) = 5 --> ind z-score list 1 to list 2
     % option(1) = 6 --> pair-wise difference list 1 to list 2
     % options(1) = 7 --> leave one out from list 1
+    % opt_comp = 8 --> list 1 each compares against null distribution of
+    % correlation coefficients
 % second index indicates the analysis option
     % option(2) = 1 --> % Spearman correlation
     % option(2) = 2 --> % Pearson correlation
@@ -52,8 +54,9 @@ for i = 1:Nperm
             ord_i2 = randperm(N2)';
             D1_i(1:N1_g1,:) = D1(ord_i1(1:N1_g1),:);
             D1_i(N1_g1+1:end,:) = D2(ord_i2(1:N1_g2),:);
-            D2_i(1:N2_g1,:) = D1(ord_i1(N1_g1+1:end),:);
-            D2_i(N2_g1+1:end,:) = D2(ord_i2(N1_g2+1:end),:);
+            l1 = length(ord_i1(N1_g1+1:end));
+            D2_i(1:l1,:) = D1(ord_i1(N1_g1+1:end),:);
+            D2_i(l1+1:end,:) = D2(ord_i2(N1_g2+1:end),:);
     end
     
 
@@ -94,18 +97,22 @@ end
   
 if options(2)==1
     if options(4)==1
-        [r_es] = partialcorr(data',data_PET',T1','type','Spearman');   
+        data_ij = removenan_my([data',data_PET',T1']);
+        [r_es] = partialcorr(data_ij(:,1:size(data',2)),data_ij(:,size(data',2)+1:size(data',2)+size(data_PET',2)),data_ij(:,size(data',2)+size(data_PET',2)+1:end),'type','Spearman');   
     else
-        [r_es] = corr(data',data_PET','type','Spearman');   
+        data_ij = removenan_my([data',data_PET']);
+        [r_es] = corr(data_ij(:,1:size(data',2)),data_ij(:,size(data',2)+1:size(data',2)+size(data_PET',2)),'type','Spearman');   
     end
 elseif options(2)==2
     if options(4)==1
-        [r_es] = partialcorr(data',data_PET',T1','type','Pearson');
+        data_ij = removenan_my([data',data_PET',T1']);
+        [r_es] = partialcorr(data_ij(:,1:size(data',2)),data_ij(:,size(data',2)+1:size(data',2)+size(data_PET',2)),data_ij(:,size(data',2)+size(data_PET',2)+1:end),'type','Pearson');
     else
-        [r_es] = corr(data',data_PET','type','Pearson');
+        data_ij = removenan_my([data',data_PET']);
+        [r_es] = corr(data_ij(:,1:size(data',2)),data_ij(:,size(data',2)+1:size(data',2)+size(data_PET',2)),'type','Pearson');
     end
 else
-    disp('Exact permutation is not supported for this option');
+    disp('Exact p-value permutation is not supported for this option');
     break;
 end
          
