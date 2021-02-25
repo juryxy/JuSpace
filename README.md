@@ -36,3 +36,6 @@ To compute exact permutation based p-values for within and between-subject desig
 25.05.2020 
 - fixed some visualization color mismatch for linux, 
 - fixed a setting for computational option 4 (list 1 each image) and option 8 (allowing to test correlation distribution for all files from list 1 against null)
+
+25.02.2021
+- fixed a bug in computation of an exact p-value (leaded to error message under certain conditions)
