@@ -40,5 +40,5 @@ To compute exact permutation based p-values for within and between-subject desig
 25.02.2021
 - fixed a bug in computation of an exact p-value (leaded to error message under certain conditions)
 
-30.07.2021
+30.07.2021 - Version 1.2 release
 - A major update adding exact spatial permutations statistics for options 3,4 and 8 (highly recommended to use instead of the parametric p-value). Random permutations are performed by creating randomly permuted PET maps and reintroducing spatial auto-correlation (if present in the original). Auto-correlation is reintroduced by smoothing the permuted data (similar to the concept introduced by Burt et al. 2018, Nature Neuroscience, 21(9):1251–1259).
