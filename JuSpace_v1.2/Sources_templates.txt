@@ -1,0 +1,33 @@
+Our:
+CBF (Holiga et al. 2018, Plos One)
+DAT (Dukart et al. 2018, Scientific Reports)
+GABAa (Dukart et al. 2018, Scientific Reports)
+Tau: Created from mean of 27 baseline AD scan from ADNI
+Amyloid: Created from mean of 12 baseline AD scans from ADNI
+
+Resources PET: (https://datadryad.org/resource/doi:10.5061/dryad.rc073) (freeware)
+D2_Raclopride: 
+Long-term test–retest reliability of striatal and extrastriatal dopamine D2/3 receptor binding: study with [11C]raclopride and high-resolution PET
+
+NAT: https://www.ncbi.nlm.nih.gov/pubmed/28066877
+D1: https://www.ncbi.nlm.nih.gov/pubmed/28197685
+
+
+SERT: https://www.nitrc.org/projects/ki-5htt/ (free)
+
+F-Dopa: https://www.nitrc.org/projects/spmtemplates/ (García-Gómez FJ, et al. Elaboration of the SPM template for the standardization of SPECT images with 123I-Ioflupane. Rev Esp Med Nucl Imagen Mol. 2013;32:350-6).
+
+Not Public (Lanzenberger): https://neurovault.org/collections/1206/
+Savli, M., Bauer, A., Mitterhauser, M., Ding, Y.-S., Hahn, A., Kroll, T., … Lanzenberger, R. (2012). Normative database of the serotonergic system in healthy subjects using multi-tracer PET. NeuroImage, 63(1), 447–459. doi:10.1016/j.neuroimage.2012.07.001 
+5HT1a
+5HT1b
+5HT2a
+5HTT
+
+Not Public (Turku): http://aivo.utu.fi/templates/
+Amyloid (PIB)
+D2
+FDG
+Mu
+SERT
+

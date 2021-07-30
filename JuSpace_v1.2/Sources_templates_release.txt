@@ -1,0 +1,14 @@
+Sources: 
+CBF: Citation: Holiga et al. 2018, Plos One
+DAT: Citation: Dukart et al. 2018, Scientific Reports, 10.1038/s41598-018-22444-0
+GABAa: Citation: Dukart et al. 2018, Scientific Reports, 10.1038/s41598-018-22444-0
+D2_Raclopride: https://datadryad.org/resource/doi:10.5061/dryad.rc073 Citation: Long-term test–retest reliability of striatal and extrastriatal dopamine D2/3 receptor binding: study with [11C]raclopride and high-resolution PET
+NAT: Citation: https://www.ncbi.nlm.nih.gov/pubmed/28066877
+D1: Citation: https://www.ncbi.nlm.nih.gov/pubmed/28197685
+SERT_MADAM: https://www.nitrc.org/projects/ki-5htt
+F-Dopa: https://www.nitrc.org/projects/spmtemplates/ (García-Gómez FJ, et al. Elaboration of the SPM template for the standardization of SPECT images with 123I-Ioflupane. Rev Esp Med Nucl Imagen Mol. 2013;32:350-6).
+5HT1a: https://neurovault.org/collections/1206/   Citation: Savli, M. et al. (2012).NeuroImage, 63(1), 447–459. doi:10.1016/j.neuroimage.2012.07.001 
+5HT1b: https://neurovault.org/collections/1206/   Citation: Savli, M. et al. (2012).NeuroImage, 63(1), 447–459. doi:10.1016/j.neuroimage.2012.07.001 
+5HT2a: https://neurovault.org/collections/1206/   Citation: Savli, M. et al. (2012).NeuroImage, 63(1), 447–459. doi:10.1016/j.neuroimage.2012.07.001 
+SERT_DASB (5HTT): https://neurovault.org/collections/1206/   Citation: Savli, M. et al. (2012).NeuroImage, 63(1), 447–459. doi:10.1016/j.neuroimage.2012.07.001 
+MU: https://identifiers.org/neurovault.image:303255	Citation: Kantonen, T. et al. (2020). NeuroImage, 116922. doi:10.1016/j.neuroimage.2020.116922
