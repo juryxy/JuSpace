@@ -39,7 +39,7 @@ More information about generation of the neuromorphometrics atlas included in th
 	
 	BrainCOLOR: http://neuromorphometrics.com/ParcellationProtocol_2010-04-05.PDF
 
-A list of regions provided in the atlas is available using the following link:
+A list of anatomical labels for the for the included neuromorphometrics (asymetric - 119 regions version) atlas is available using the following link:
    
 	https://github.com/neurodebian/spm12/blob/master/tpm/labels_Neuromorphometrics.xml
  
