@@ -1,11 +1,11 @@
 # JuSpace
 This is the repository for the JuSpace toolbox allowing for cross-modal correlations between imaging data and positron emission tomography derived information
 |===================================================================|
-|                        WELCOME to JuSpace|
+|                        WELCOME to JuSpace v 1.3                   |
 |                                                                   |
 |                                                                   |
 |    Tool for spatial correlation analyses of magnetic resonance    |
-|    		imaging data with positron emission                 |
+|    		imaging data with positron emission                          |
 |                 tomography derived receptor maps                  |
 |                                                                   |
 |===================================================================|
@@ -39,3 +39,10 @@ To compute exact permutation based p-values for within and between-subject desig
 
 25.02.2021
 - fixed a bug in computation of an exact p-value (leaded to error message under certain conditions)
+
+30.07.2021 - Version 1.2 release
+- A major update adding exact spatial permutations statistics for options 3,4 and 8 (highly recommended to use instead of the parametric p-value). Random permutations are performed by creating randomly permuted PET maps and reintroducing spatial auto-correlation (if present in the original). Auto-correlation is reintroduced by smoothing the permuted data (similar to the concept introduced by Burt et al. 2018, Nature Neuroscience, 21(9):1251–1259).
+
+01.12.2021 - Version 1.3 release
+- Fixed a bug in visualization of bar plots (shifted x labels when too many PET maps in one plot)
+- Added many new PET maps
