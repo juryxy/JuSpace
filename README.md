@@ -33,6 +33,16 @@ The user interface should appear.
 Alternative the computing function "compute_DomainGauges" can be called directly, see help for this function on its usage
 To compute exact permutation based p-values for within and between-subject designs the function "compute_exact_pvalue" needs to be called. The function requires inputs provided by the "compute_DomainGauges" function
 
+More information about generation of the neuromorphometrics atlas included in the toolbox can be found on the following pages:
+ 	General Segmentation: http://neuromorphometrics.com/Seg/
+	BrainCOLOR: http://neuromorphometrics.com/ParcellationProtocol_2010-04-05.PDF
+
+A list of regions provided in the atlas is available using the following link:
+   
+	https://github.com/neurodebian/spm12/blob/master/tpm/labels_Neuromorphometrics.xml
+ 
+Version history:
+
 25.05.2020 
 - fixed some visualization color mismatch for linux, 
 - fixed a setting for computational option 4 (list 1 each image) and option 8 (allowing to test correlation distribution for all files from list 1 against null)
