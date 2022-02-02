@@ -33,7 +33,7 @@ path_maps = fullfile(path_ju,'nullMaps',atlas_name);
 
     if exist(null_path,'file')
         data_permuted = load(null_path);
-        if size(data_permuted,1)< Nperm
+        if size(data_permuted.data_permuted,1)< Nperm
             [data_permuted_n] = generate_spatial_nullMaps(atlas,data_PET(i,:),Nperm-size(data_permuted.data_permuted,1),1);
             data_permuted = [data_permuted.data_permuted; data_permuted_n];
             data_perm_all{i} = data_permuted;
