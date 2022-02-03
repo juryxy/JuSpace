@@ -58,3 +58,6 @@ Version history:
 01.12.2021 - Version 1.3 release
 - Fixed a bug in visualization of bar plots (shifted x labels when too many PET maps in one plot)
 - Added many new PET maps
+
+03.02.2022
+- Fixed a bug in loading the maps when files with different dimensions were loaded into the same map.
