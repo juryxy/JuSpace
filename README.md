@@ -60,4 +60,4 @@ Version history:
 - Added many new PET maps
 
 03.02.2022
-- Fixed a bug in loading the maps when files with different dimensions were loaded into the same map.
+- Fixed a bug in loading the maps when files with different dimensions were loaded into the same list.
