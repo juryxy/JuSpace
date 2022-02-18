@@ -62,6 +62,7 @@ end
 if r>0
     try
         parfor nn = 1:N
+            disp(nn);
             data_rand_weighted = zeros(length(coord_fin),1);
             dist_valsr = zeros(length(coord_fin),length(coord_fin));
 %             tic;
@@ -79,7 +80,8 @@ if r>0
                 std_dist = 1;
                 % smooth data to induce spatial autocorrelation
                 if rr<r
-                    while rr<r
+                    rr_prev = 0;
+                    while rr<r && round(rr,4)>rr_prev
                         std_dist = std_dist+1;
                         for i = 1:length(coord_fin)
                             dist_i = dist(i,:);
@@ -94,6 +96,7 @@ if r>0
                                 dist_valsr(i,j) = abs(data_rand_weighted(i) - data_rand_weighted(j));
                             end
                         end
+                        rr_prev = round(rr,4);
                         [rr] = corr(dist(:),dist_valsr(:));
                     end
                 else
@@ -129,6 +132,7 @@ if r>0
         end
     catch %if no parallel computing toolbox available
          for nn = 1:N
+            disp(nn);
             data_rand_weighted = zeros(length(coord_fin),1);
             dist_valsr = zeros(length(coord_fin),length(coord_fin));
             tic;
@@ -142,11 +146,13 @@ if r>0
                        end
                 end
                [rr] = corr(dist(:),dist_valsr(:));
+              
     %             rr = -1;
                 std_dist = 1;
                 % smooth data to induce spatial autocorrelation
                 if rr<r
-                    while rr<r
+                    rr_prev = 0;
+                    while rr<r && round(rr,4)>rr_prev
                         std_dist = std_dist+1;
                         for i = 1:length(coord_fin)
                             dist_i = dist(i,:);
@@ -161,7 +167,9 @@ if r>0
                                 dist_valsr(i,j) = abs(data_rand_weighted(i) - data_rand_weighted(j));
                             end
                         end
+                        rr_prev = round(rr,4);
                         [rr] = corr(dist(:),dist_valsr(:));
+                         disp(rr);
                     end
                 else
                     data_rand_weighted = data_rand;
