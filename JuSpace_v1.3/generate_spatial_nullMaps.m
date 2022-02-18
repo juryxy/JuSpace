@@ -39,11 +39,11 @@ if opt_symmetry == 1
     for i = 1:length(a1_filt)
         ind_i = find(a1_filt(i)==a(2:end));
         coord_half(i,:) = coord(ind_i,:);
-        data_fin(1,i) = data(ind_i);
+        data_fin(1,i) = data_PET(ind_i);
     end
     coord_fin = coord_half;
 else 
-    data_fin = data;
+    data_fin = data_PET;
     coord_fin = coord;
 end
 
@@ -80,8 +80,9 @@ if r>0
                 std_dist = 1;
                 % smooth data to induce spatial autocorrelation
                 if rr<r
-                    rr_prev = 0;
-                    while rr<r && round(rr,4)>rr_prev
+
+                    check = 1;
+                    while rr<r && check<1000
                         std_dist = std_dist+1;
                         for i = 1:length(coord_fin)
                             dist_i = dist(i,:);
@@ -96,7 +97,7 @@ if r>0
                                 dist_valsr(i,j) = abs(data_rand_weighted(i) - data_rand_weighted(j));
                             end
                         end
-                        rr_prev = round(rr,4);
+                        check = check +1;
                         [rr] = corr(dist(:),dist_valsr(:));
                     end
                 else
@@ -131,8 +132,10 @@ if r>0
 %             toc;
         end
     catch %if no parallel computing toolbox available
-         for nn = 1:N
+%          rr_all = [];
+        for nn = 1:N
             disp(nn);
+            
             data_rand_weighted = zeros(length(coord_fin),1);
             dist_valsr = zeros(length(coord_fin),length(coord_fin));
             tic;
@@ -151,8 +154,8 @@ if r>0
                 std_dist = 1;
                 % smooth data to induce spatial autocorrelation
                 if rr<r
-                    rr_prev = 0;
-                    while rr<r && round(rr,4)>rr_prev
+                   check = 1;
+                    while rr<r && check<1000
                         std_dist = std_dist+1;
                         for i = 1:length(coord_fin)
                             dist_i = dist(i,:);
@@ -167,13 +170,14 @@ if r>0
                                 dist_valsr(i,j) = abs(data_rand_weighted(i) - data_rand_weighted(j));
                             end
                         end
-                        rr_prev = round(rr,4);
+                        check = check+1;
                         [rr] = corr(dist(:),dist_valsr(:));
-                         disp(rr);
+%                          disp(rr);
                     end
                 else
                     data_rand_weighted = data_rand;
                 end
+%                 rr_all(nn,1) = rr;
             %rescale to original min and max
             min_nn = min(data_rand_weighted);
             data_rand_weighted_c = data_rand_weighted-min_nn;
@@ -199,6 +203,9 @@ if r>0
             else
                     data_rand_weighted_fin = data_rand_weighted_c;
             end
+            if isnan(data_rand_weighted_fin)
+                break
+            end
             data_permuted(nn,:) = data_rand_weighted_fin;
             toc;
         end
@@ -207,7 +214,7 @@ else
       
       disp('Spatial autocorrelation is zero or negative, no adjustment performed')
       for nn = 1:N
-          rr = randperm(length(data));
-          data_permuted(nn,:) = data(rr);
+          rr = randperm(length(data_PET));
+          data_permuted(nn,:) = data_PET(rr);
       end
 end
