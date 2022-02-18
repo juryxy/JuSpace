@@ -61,3 +61,6 @@ Version history:
 
 03.02.2022
 - Fixed a bug in loading the maps when files with different dimensions were loaded into the same list.
+
+18.02.2022
+- Fixed a bug in generate_spatial_nullMaps (while loop did not converge for some of the newly added PET maps)
