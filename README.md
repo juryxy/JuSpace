@@ -5,16 +5,20 @@ This is the repository for the JuSpace toolbox allowing for cross-modal correlat
 |                                                                   |
 |                                                                   |
 |    Tool for spatial correlation analyses of magnetic resonance    |
-|    		imaging data with positron emission                          |
+|    		imaging data with positron emission                 |
 |                 tomography derived receptor maps                  |
 |                                                                   |
 |===================================================================|
  
-       			Created by Juergen Dukart
+Created by Juergen Dukart, at INM7, Research Center Jülich, Jülich, Germany
           
-          Please contact me at juergen.dukart@gmail.com for reports on bugs or other questions with respect to the toolbox
- 
-          PET and SPECT data sources are listed in "Sources_templates_release.txt". Please cite the sources corresponding to respective PET or SPECT maps
+Please contact me at juergen.dukart@gmail.com for reports on bugs or other questions with respect to the toolbox
+	  
+Please cite the following publication when using the toolbox:
+	  
+Dukart J, Holiga S, Rullmann M, Lanzenberger R, Hawkins PCT, Mehta MA, Hesse S, Barthel H, Sabri O, Jech R, Eickhoff SB. JuSpace: A tool for spatial correlation analyses of magnetic resonance imaging data with nuclear imaging derived neurotransmitter maps. Hum Brain Mapp. 2021 Feb 15;42(3):555-566. doi: 10.1002/hbm.25244. Epub 2020 Oct 20.
+
+PET and SPECT data sources are listed in "Sources_templates_release.txt". Please cite the sources corresponding to respective PET or SPECT maps
 
  
 --------------------------------------------------------------------
