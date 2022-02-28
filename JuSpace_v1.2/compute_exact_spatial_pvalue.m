@@ -31,15 +31,22 @@ path_maps = fullfile(path_ju,'nullMaps',atlas_name);
     [dd,PET_name] = fileparts(filesPET{i});
     null_path = fullfile(path_maps,[PET_name '.mat']);
 
-    if exist(null_path,'file') && Nperm<1001
+    if exist(null_path,'file')
         data_permuted = load(null_path);
-        data_perm_all{i} = data_permuted.data_permuted;
-
+        if size(data_permuted.data_permuted,1)< Nperm
+            [data_permuted_n] = generate_spatial_nullMaps(atlas,data_PET(i,:),Nperm-size(data_permuted.data_permuted,1),1);
+            data_permuted = [data_permuted.data_permuted; data_permuted_n];
+            data_perm_all{i} = data_permuted;
+            save(null_path,'data_permuted');
+        else
+            data_perm_all{i} = data_permuted.data_permuted;
+        end
     else
 %         for i = 1:size(data_PET,1)
         disp(['Generating permuted maps for PET map for ' PET_name]);
         [data_permuted] = generate_spatial_nullMaps(atlas,data_PET(i,:),Nperm,1);
         data_perm_all{i} = data_permuted;
+        save(null_path,'data_permuted');
 %         end
         disp('Generating PET maps completed');
     end
@@ -61,7 +68,7 @@ end
 
 switch options(2)
 
-    case 1
+    case 2
         for i = 1:size(data_PET,1)
 
             if options(4) == 1
@@ -78,7 +85,7 @@ switch options(2)
                 r_all{i} = r_i;
             end
         end
-    case 2
+    case 1
         for i = 1:size(data_PET,1)
 
 %             r_i = corr(data',data_perm_all{i}','type','Spearman');
