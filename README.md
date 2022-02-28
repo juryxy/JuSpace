@@ -68,3 +68,6 @@ Version history:
 
 18.02.2022
 - Fixed a bug in generate_spatial_nullMaps (while loop did not converge for some of the newly added PET maps)
+
+28.02.2022
+- A major bug fixed for computing exact spatial correlation option (was computing Pearson spatial null for Spearman and vice versa)
