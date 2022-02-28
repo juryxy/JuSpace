@@ -68,7 +68,7 @@ end
 
 switch options(2)
 
-    case 1
+    case 2
         for i = 1:size(data_PET,1)
 
             if options(4) == 1
@@ -85,7 +85,7 @@ switch options(2)
                 r_all{i} = r_i;
             end
         end
-    case 2
+    case 1
         for i = 1:size(data_PET,1)
 
 %             r_i = corr(data',data_perm_all{i}','type','Spearman');
