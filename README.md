@@ -39,3 +39,6 @@ To compute exact permutation based p-values for within and between-subject desig
 
 25.02.2021
 - fixed a bug in computation of an exact p-value (leaded to error message under certain conditions)
+
+28.02.2022
+- A major bug fixed for computing exact spatial correlation option (was computing Pearson spatial null for Spearman and vice versa)
