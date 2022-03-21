@@ -154,14 +154,18 @@ switch options(2)
 end
  
 
-for i = 1:size(res,1)
-    for j = 1:size(res,2)
-        r_i_j = r_all{j}(i,:)';
-        p_exact(i,j) = (sum(abs(r_i_j)>=abs(res(i,j)))+1)./(length(r_i_j)+1);
+    for i = 1:size(res,1)
+        for j = 1:size(res,2)
+            r_i_j = r_all{j}(i,:)';
+            if isnan(res(i,j)) | isnan(r_i_j)
+                p_exact(i,j) = NaN;
+            else
+                p_exact(i,j) = (sum(abs(r_i_j)>=abs(res(i,j)))+1)./(length(r_i_j)+1);
+            end
+        end
     end
-end
 
-% p_exact = (sum(abs(r_all)>=abs(res))+1)./(length(r_all)+1);
-p_exact = p_exact';
-p_exact = p_exact(:)';
-dist_rand = r_all;
+    % p_exact = (sum(abs(r_all)>=abs(res))+1)./(length(r_all)+1);
+    p_exact = p_exact';
+    p_exact = p_exact(:)';
+    dist_rand = r_all;
