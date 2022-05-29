@@ -71,3 +71,6 @@ Version history:
 
 28.02.2022
 - A major bug fixed for computing exact spatial correlation option (was computing Pearson spatial null for Spearman and vice versa)
+
+29.05.2022
+- Major updates to visualization functionalities
