@@ -1,0 +1,45 @@
+References/sources (please cite the below references if you use the respective maps). Please also note that some of the PET maps are released under specific licenses that are provided at the end of the respective reference: 
+
+CBF (ASL_MRI: Cerebral Blood Flow): Citation: Holiga et al. 2018, Plos One, doi: 10.1371/journal.pone.0206583
+
+GABAa (FLUMAZENIL_c11): Citation: Dukart et al. 2018, Scientific Reports, doi:10.1038/s41598-018-22444-0
+GABAa (flumazenil_hc16_norgaard): Norgaard et al.  (2021). "A high-resolution in vivo atlas of the human brain's benzodiazepine binding site of GABAA receptors.", NeuroImage, doi:10.1016/j.neuroimage.2021.117878, license: https://xtra.nru.dk/BZR-atlas/
+
+D1 (SCH23390_c1): Citation: https://www.ncbi.nlm.nih.gov/pubmed/28197685
+
+D2 (Raclopride): https://datadryad.org/resource/doi:10.5061/dryad.rc073 Citation: Long-term test–retest reliability of striatal and extrastriatal dopamine D2/3 receptor binding: study with [11C]raclopride and high-resolution PET
+D2 (fallypride_hc49_jaworska): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+
+DAT (DATSPECT): Citation: Dukart et al. 2018, Scientific Reports,  doi:10.1038/s41598-018-22444-0
+
+NAT (MRB_c11): Citation: https://www.ncbi.nlm.nih.gov/pubmed/28066877
+
+SERT (MADAM_c11): https://www.nitrc.org/projects/ki-5htt
+SERT (dasb_hc100_beliveau): Beliveau et al. (2017). "A High-Resolution In Vivo Atlas of the Human Brain's Serotonin System.", Journal of Neuroscience, doi: 10.1523/JNEUROSCI.2830-16.2016. LICENSE: https://xtra.nru.dk/FS5ht-atlas/
+SERT_DASB (5HTT): https://neurovault.org/collections/1206/   Citation: Savli, M. et al. (2012).NeuroImage, 63(1), 447–459. doi:10.1016/j.neuroimage.2012.07.001 
+
+F-Dopa: https://www.nitrc.org/projects/spmtemplates/ (García-Gómez FJ, et al. Elaboration of the SPM template for the standardization of SPECT images with 123I-Ioflupane. Rev Esp Med Nucl Imagen Mol. 2013;32:350-6).
+
+5HT1a: https://neurovault.org/collections/1206/   Citation: Savli, M. et al. (2012).NeuroImage, 63(1), 447–459. doi:10.1016/j.neuroimage.2012.07.001
+5HT1a (cumi_hc8_beliveau): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+
+5HT1b: https://neurovault.org/collections/1206/   Citation: Savli, M. et al. (2012).NeuroImage, 63(1), 447–459. doi:10.1016/j.neuroimage.2012.07.001 
+5HT1b (az_hc36_beliveau): Beliveau et al. (2017). "A High-Resolution In Vivo Atlas of the Human Brain's Serotonin System.", Journal of Neuroscience, doi: 10.1523/JNEUROSCI.2830-16.2016. LICENSE: https://xtra.nru.dk/FS5ht-atlas/
+
+5HT2a: https://neurovault.org/collections/1206/   Citation: Savli, M. et al. (2012).NeuroImage, 63(1), 447–459. doi:10.1016/j.neuroimage.2012.07.001 
+5HT2a (cimbi_hc29_beliveau): Beliveau et al. (2017). "A High-Resolution In Vivo Atlas of the Human Brain's Serotonin System.", Journal of Neuroscience, doi: 10.1523/JNEUROSCI.2830-16.2016. LICENSE: https://xtra.nru.dk/FS5ht-atlas/
+
+5HT4 (sb20_hc59_beliveau): Beliveau et al. (2017). "A High-Resolution In Vivo Atlas of the Human Brain's Serotonin System.", Journal of Neuroscience, doi: 10.1523/JNEUROSCI.2830-16.2016. LICENSE: https://xtra.nru.dk/FS5ht-atlas/
+
+MU (CARFENTANIL_c11): https://identifiers.org/neurovault.image:303255	Citation: Kantonen, T. et al. (2020). NeuroImage, 116922. doi:10.1016/j.neuroimage.2020.116922
+MU (carfentanil_hc39_turtonen): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+
+mGluR5 (abp_hc22_rosanetto): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+mGluR5 (abp_hc28_dubois): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+mGluR5 (abp_hc73_smart): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336 , license: Attribution-NonCommercial-ShareAlike 4.0 International
+
+CB1: Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+
+VAChT (feobv_hc4_tuominen): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+VAChT (feobv_hc18_aghourian): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+VAChT (feobv_hc5_bedard): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
