@@ -18,7 +18,7 @@ Please cite the following publication when using the toolbox:
 	  
 Dukart J, Holiga S, Rullmann M, Lanzenberger R, Hawkins PCT, Mehta MA, Hesse S, Barthel H, Sabri O, Jech R, Eickhoff SB. JuSpace: A tool for spatial correlation analyses of magnetic resonance imaging data with nuclear imaging derived neurotransmitter maps. Hum Brain Mapp. 2021 Feb 15;42(3):555-566. doi: 10.1002/hbm.25244. Epub 2020 Oct 20.
 
-PET and SPECT data sources are listed in "Sources_templates_release.txt". Please cite the sources corresponding to respective PET or SPECT maps
+PET and SPECT data sources are listed in "Sources_templates_release.txt". Please cite the sources corresponding to respective PET or SPECT maps. Please note that some of the PET maps are released under a different license as indicated in the .txt file.
 
  
 --------------------------------------------------------------------
