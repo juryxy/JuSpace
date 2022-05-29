@@ -1,7 +1,7 @@
 # JuSpace
 This is the repository for the JuSpace toolbox allowing for cross-modal correlations between imaging data and positron emission tomography derived information
 |===================================================================|
-|                        WELCOME to JuSpace v 1.3                   |
+|                        WELCOME to JuSpace v 1.4                   |
 |                                                                   |
 |                                                                   |
 |    Tool for spatial correlation analyses of magnetic resonance    |
@@ -72,5 +72,5 @@ Version history:
 28.02.2022
 - A major bug fixed for computing exact spatial correlation option (was computing Pearson spatial null for Spearman and vice versa)
 
-29.05.2022
+29.05.2022 - Version 1.4 release
 - Major updates to visualization functionalities
