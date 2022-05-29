@@ -199,9 +199,9 @@ global files_PET
 aa = get(handles.PETlist,'Value');
 str_PET = get(handles.PETlist,'String');
 str_PET = str_PET(aa);
-for i = 1:length(str_PET);
+for i = 1:length(str_PET)
    tt = regexp(str_PET{i},'_','Split');
-   Rec_list{i}=tt{1};
+   Rec_list{i}=[tt{1} ' (' tt{2} ')'];
 end
 filesPET = files_PET(aa);
 atlas = char(get(handles.atlaslist,'String'));
@@ -281,7 +281,7 @@ for i = 1:length(filesPET)
        y_dist_inv = rand(size(y_dist_inv));
    end
    
-   x_n_n(ind_plot==i) = ind_plot(ind_plot==i) + 1.*(rand(size_y_xi,1)-0.5).*y_dist_inv;
+   x_n_n(ind_plot==i) = ind_plot(ind_plot==i) + 0.7.*(rand(size_y_xi,1)-0.5).*y_dist_inv;
    all_ii = all_i(~isinf(all_i));
    m_x(i) = mean(all_ii);
    std_x(i,1) = 1.95996.*std(all_ii)./sqrt(length(all_ii));
@@ -290,9 +290,14 @@ for i = 1:length(filesPET)
 %    end
 end
 % plot specs
+
+n_files = length(list1);
 marker_color = [0 0.7 1];
-bar_color = generate_colors_nice_my(length(filesPET));
-dot_edge = [0 0.4 1];
+% if n_files > 1
+%     bar_color = generate_colors_nice_my(length(filesPET));
+% else
+    bar_color = generate_colors_blue_my(length(filesPET));
+% end
 error_color = [0.2 0.3 0.4];
 error_thickness = 3;
 marker_size = 20;
@@ -305,32 +310,71 @@ marker_size = 20;
 set(handles.res_summary,'Data',Resh);
 if length(filesPET)<3
     h1 = figure('Position',[400 400 500 500]);
+elseif length(filesPET)<10
+    h1 = figure('Position',[400 200 length(filesPET).*150 700]);
 else
-    h1 = figure('Position',[400 400 length(filesPET).*120 500]);
+    h1 = figure('Position',[400 200 length(filesPET).*100 700]);
 end
 
-h2 = bar(1:length(filesPET),diag(m_x),0.9,'stacked');
+if opt_comp<3 || size(data,1)==1
+    h2 = bar(1:length(filesPET),diag(m_x),0.9,'stacked');
+    ylim([min(m_x)-0.1 max(m_x)+0.1]);
+
+   
+else
+    
+    h2 = boxplot(vals_plot,'widths',0.9,'outliersize',2);
+    set(h2(7,:),'Visible','off');
+%     set(gca,'XTickLabel',Rec_list);
+    h3 = findobj(gca,'Tag','Box');
+    flip_color = flip(bar_color);
+    for j=1:length(h3)
+    patch(get(h3(j),'XData'),get(h3(j),'YData'),flip_color(j,:),'EdgeColor','black');
+    end
+    hold on
+    h2 = boxplot(vals_plot,'widths',0.9,'outliersize',2,'Colors',zeros(3,3));
+    set(h2(7,:),'Visible','off');
+    lines = findobj(gcf, 'type', 'line', 'Tag', 'Median');
+    set(lines, 'Color', 'black');
+    grid on
+end
+
+
+ax = gca;
+set(ax, 'XTick', 1:length(Rec_list));
+if length(filesPET)>1
+    set(ax,'XTickLabel',Rec_list,'FontSize',16,'XTickLabelRotation',90);
+else
+    set(ax,'XTickLabel',Rec_list,'FontSize',16);
+end
+ vv = vals_plot';
+ vv2 = vv(:);
 %colormap(bar_color)
 % bar(handles.plot_bars, 1:length(filesPET),m_x,0.9,'EdgeColor',bar_edge);
 hold('on');
 
-ax = gca;
-set(ax, 'XTick', 1:length(Rec_list));
-set(ax,'XTickLabel',Rec_list,'FontSize',16);
-vv = vals_plot';
-vv2 = vv(:);
 
 for i = 1:length(filesPET)
-    set(h2(i),'facecolor',bar_color(i,:));
+    if size(data,1)==1
+        set(h2(i),'facecolor',bar_color(i,:),'edgecolor',bar_color(i,:));
+    end
     if opt_comp>=4
+
+        if n_files>1
         plot(x_n_n(ind_plot==i),vv2(ind_plot==i),'o','MarkerSize',8,'MarkerFaceColor',bar_color(i,:),'MarkerEdgeColor',error_color,'LineWidth',1);
+        end
     end
 end
-if opt_comp>=4
-        h2 = errorbar(1:length(filesPET),m_x,std_x,'.');
-        title('Error bars represent 95% confidence interval','FontSize',12);
-        set(h2,'LineWidth',error_thickness,'Color',error_color,'MarkerSize',marker_size,'MarkerEdgeColor',error_color);
-end
+
+% if opt_comp>=4
+%     if n_files>1
+%         h2 = errorbar(1:length(filesPET),m_x,std_x,'.');
+%         title('Error bars represent 95% confidence interval','FontSize',12);
+%         set(h2,'LineWidth',error_thickness,'Color',error_color,'MarkerSize',marker_size,'MarkerEdgeColor',error_color);
+%     else
+%         ylim([min(m_x)-0.1 max(m_x)+0.1]);
+%     end
+% end
 
 
 
@@ -356,6 +400,7 @@ switch opt_ana
     case 3
         ylabel(ax,'Beta coeffiecient','fontweight','bold');
 end
+set(h1,'color','w');
 savefig(h1,fullfile(dir_save,['Bar_' name_save file_part '_' time_now '.fig']));
 print(h1,fullfile(dir_save,['Bar_' name_save file_part '_' time_now '.png']),'-dpng','-r300');
 %-----------------------
@@ -395,7 +440,8 @@ if opt_ana<3
     for j = 1:size(data_PET,1)
         nn = 1;
         colors_all = [];
-        color_i = [1 0.5 0];
+        color_i = generate_colors_blue_my(size(data,1));
+%         color_edge = [0 0.4470 0.7410];
 %         legend_all = {};
 
          subplot(n_rows,ind_col,j);
@@ -406,6 +452,7 @@ if opt_ana<3
             xlabel(['Data ' Rec_list{j}],'FontSize',16);
 %         end
         hold('on');
+        grid on;
             for i = 1:size(data,1)
                     nn = nn + 1;
                     if nn < n_draw+1
@@ -415,10 +462,10 @@ if opt_ana<3
 %                             [temp,x]  = ismember(x,unique(x));
 %                             [temp,y]  = ismember(y,unique(y));
 %                         end
-                        plot(x,y,'o','MarkerSize',6,'MarkerFaceColor',color_i,'MarkerEdgeColor','black');
-                        colors_all = [colors_all; color_i];
-                        color_i(1) = color_i(1)-n_color;
-                        color_i(3) = color_i(3)+n_color;
+                        plot(x,y,'o','MarkerSize',9,'MarkerFaceColor',color_i(i,:),'MarkerEdgeColor',color_i(i,:));
+                        colors_all = [colors_all; color_i(i,:)];
+%                         color_i(1) = color_i(1)-n_color;
+%                         color_i(3) = color_i(3)+n_color;
 %                         legend_all{end+1} = [ff num2str(i) ' with ' Rec_list{j}];
                     end
 
@@ -433,7 +480,22 @@ if opt_ana<3
         for i = 1:length(h1)
            h1(i).Color = colors_all(i,:); 
         end
+        
+            if size(data,1)==1
+                [aa,ind_a] = sort(y);
 
+                red = (0:1:length(y)-1)'./length(y);
+
+                blue = 0.5+((length(y)-1:-1:0)'./length(y))./2;
+
+                colors_rgb = [zeros(length(red),1)+0.3 blue./1.2 blue];
+
+                hold on
+                for iii = 1:length(y)
+                plot(x(ind_a(iii)),y(ind_a(iii)),'o','MarkerSize',9,'MarkerFaceColor',colors_rgb(iii,:),'MarkerEdgeColor',colors_rgb(iii,:))
+                end
+            end
+            
     end
     
     if size(data_PET,1)==1
@@ -456,6 +518,7 @@ if opt_ana<3
         h5.XLabel.Visible='on';
         h5.YLabel.Visible='on';
         axes(h5);
+        
 %         if opt_ana == 1
 %             ylabel('Relative rank modality','FontSize',20);
 %         else
@@ -467,6 +530,7 @@ if opt_ana<3
     
 %     suplabel('Data PET','x','FontSize',20);
 %     suplabel('Data Modality','y','FontSize',20);
+    set(hh,'color','w');
     savefig(hh,fullfile(dir_save,['Line_' name_save file_part '_' time_now '.fig']));
     print(hh,fullfile(dir_save,['Line_' name_save file_part '_' time_now '.png']),'-dpng','-r300');
 end
