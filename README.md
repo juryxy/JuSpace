@@ -45,22 +45,20 @@ An example call looks as following:
 
 JuSpace saves a file with the following outputs:
 
-% Outputs:
-% res --> Fisher's z transformed correlation / multiple linear regression coefficient matrix, rows correspond to
-% input files, columns to PET maps
-% p_all --> p-values from one-sample t-test testing if the Fisher's z transformed correlations /regression coefficients are different from zero
-% stats --> Summary statistics
-% stats.CorrOrig --> original (not Fisher's z transformed) individual correlation coefficients
-% stats.p_ind --> p-values for correlations (CorrOrig) of individual files with PET maps 
-% stats.res_ind --> Individual Fisher's z-transformed correlation
-% coefficients / regression coefficients
-% stats.ci95 --> 95% confidence interval of the one sample t-test for
-% the group test if the correlation coefficient distribution is different
-% from 0 (see also the p_all output)
-% D1 --> data matrix from list 1
-% D2 --> data matrix for list 2 (if not empty)
-% data_PET --> PET data matrix
-% Resh --> Reshaped results matrix [file_index PET_map Correlation_result p-value file_path]
+Outputs:
+res --> Fisher's z transformed correlation / multiple linear regression coefficient matrix, rows correspond to
+input files, columns to PET maps
+p_all --> p-values from one-sample t-test testing if the Fisher's z transformed correlations /regression coefficients are different from zero
+stats --> Summary statistics
+stats.CorrOrig --> original (not Fisher's z transformed) individual correlation coefficients
+stats.p_ind --> p-values for correlations (CorrOrig) of individual files with PET maps 
+stats.res_ind --> Individual Fisher's z-transformed correlation
+coefficients / regression coefficients
+stats.ci95 --> 95% confidence interval of the one sample t-test for the group test if the correlation coefficient distribution is different from 0 (see also the p_all output)
+D1 --> data matrix from list 1
+D2 --> data matrix for list 2 (if not empty)
+data_PET --> PET data matrix
+Resh --> Reshaped results matrix [file_index PET_map Correlation_result p-value file_path]
 
 More information about generation of the neuromorphometrics atlas included in the toolbox can be found on the following pages:
 
