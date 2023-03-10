@@ -60,6 +60,9 @@ D2 --> data matrix for list 2 (if not empty)
 data_PET --> PET data matrix
 Resh --> Reshaped results matrix [file_index PET_map Correlation_result p-value file_path]
 
+If relevant, atlas labels per region ID are provided as a separate excel table.
+
+
 More information about generation of the neuromorphometrics atlas included in the toolbox can be found on the following pages:
 
  	General Segmentation: http://neuromorphometrics.com/Seg/
