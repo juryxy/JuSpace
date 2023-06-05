@@ -113,4 +113,5 @@ Version history:
 05.06.2023 - Version 1.5 release
 - New visualization functionalities (including rank plots)
 - NMDA map added
+- Parametric p-values replaced with permutation based for all options
 
