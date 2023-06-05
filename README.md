@@ -1,7 +1,9 @@
 # JuSpace
 This is the repository for the JuSpace toolbox allowing for cross-modal correlations between imaging data and positron emission tomography derived information
+
+
 |===================================================================|
-|                        WELCOME to JuSpace v 1.4                   |
+|                        WELCOME to JuSpace v 1.5                   |
 |                                                                   |
 |                                                                   |
 |    Tool for spatial correlation analyses of magnetic resonance    |
@@ -9,6 +11,9 @@ This is the repository for the JuSpace toolbox allowing for cross-modal correlat
 |                 tomography derived receptor maps                  |
 |                                                                   |
 |===================================================================|
+ 
+ 
+ 
  
 Created by Juergen Dukart, at INM7, Research Center Jülich, Jülich, Germany
           
@@ -100,3 +105,8 @@ Version history:
 
 29.05.2022 - Version 1.4 release
 - Major updates to visualization functionalities
+
+05.06.2023 - Version 1.5 release
+- New visualization functionalities (including rank plots)
+- NMDA map added
+
