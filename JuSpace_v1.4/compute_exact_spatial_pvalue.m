@@ -26,6 +26,10 @@ function [p_exact,dist_rand] = compute_exact_spatial_pvalue(D1,data_PET,atlas,re
 path_ju = fileparts(which('JuSpace'));
 [dd,atlas_name] = fileparts(atlas);
 path_maps = fullfile(path_ju,'nullMaps',atlas_name);
+% create the directory if it does not exist
+if not(isfolder(path_maps))
+    mkdir(path_maps)
+end
 
  for i = 1:length(filesPET)
     [dd,PET_name] = fileparts(filesPET{i});
