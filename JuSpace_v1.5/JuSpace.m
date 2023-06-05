@@ -321,7 +321,18 @@ end
 
 if opt_comp<3 || size(data,1)==1
     h2 = bar(1:length(filesPET),diag(m_x),0.9,'stacked','EdgeColor','none');
-    ylim([min(m_x)*1.1 max(m_x)*1.1]);
+    if min(m_x)>0
+        min_m_x = 0;
+    else
+        min_m_x = min(m_x);
+    end
+    
+    if max(m_x)<0
+        max_m_x = 0;
+    else
+        max_m_x = max(m_x);
+    end
+    ylim([min_m_x.*1.1 max_m_x.*1.1]);
 
    
 else
