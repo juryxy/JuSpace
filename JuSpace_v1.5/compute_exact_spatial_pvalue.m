@@ -65,6 +65,10 @@ switch options(1)
         end
     case {4,8}
          data = D1;
+    case 7
+         for nn = 1:size(D1,1)
+             data(nn,:) = (D1(nn,:)-mean(D1([1:nn-1 nn+1:end],:)))./std(D1([1:nn-1 nn+1:end],:));
+         end
 end
 
 

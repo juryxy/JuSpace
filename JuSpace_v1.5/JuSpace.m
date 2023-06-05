@@ -22,7 +22,7 @@ function varargout = JuSpace(varargin)
 
 % Edit the above text to modify the response to help JuSpace
 
-% Last Modified by GUIDE v2.5 05-Jun-2023 13:00:23
+% Last Modified by GUIDE v2.5 05-Jun-2023 17:25:43
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -221,18 +221,18 @@ else
 end
 %
 opt_for_perm = [1,2,5,6];
-opt_for_spat_perm = [3, 4, 8];
+opt_for_spat_perm = [3, 4, 7, 8];
 
 if options(3)==1 && ismember(options(1),opt_for_perm)% && options(2)~=3
     disp('Computing exact p-value');
    [p_exact,dist_r] = compute_exact_pvalue(D1,D2,data_PET,res,Nperm,options,T1);
-   Resh(:,end+1) = [{'p_exact'}; num2cell_my(p_exact')];
+   Resh(:,end+1) = [{'p_exact (permutes list labels)'}; num2cell_my(p_exact')];
 end
 
 if options(5)==1 && ismember(options(1),opt_for_spat_perm)
     disp('Computing exact spatial p-value')
     [p_exact,dist_r] = compute_exact_spatial_pvalue(D1,data_PET,atlas,res,Nperm,options,filesPET, T1);
-    Resh(:,end+1) = [{'p_exact'}; num2cell_my(p_exact')];
+    Resh(:,end+1) = [{'p_exact (spatial permutations)'}; num2cell_my(p_exact')];
 end
 
 
@@ -861,3 +861,17 @@ function plot_rank_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of plot_rank
+
+
+% --- Executes when selected object is changed in Opt_comp.
+function Opt_comp_SelectionChangedFcn(hObject, eventdata, handles)
+% hObject    handle to the selected object in Opt_comp 
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+opt_comp = find([handles.Opt_comp.Children.Value]==1);
+switch opt_comp
+    case {1,2,5,6}
+        set(handles.opt_perm,'Value',1);
+    case {3,4,7,8}
+        set(handles.opt_perm_spatial,'Value',1);
+end

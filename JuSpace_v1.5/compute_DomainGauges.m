@@ -249,18 +249,19 @@ end
 switch options(2)
     case 1
         if options(1)<4
-            Resh = {ff 'PET Map' 'Fisher''s z (Spearman rho)' 'p-val (parametric)' 'File'};
+%             Resh = {ff 'PET Map' 'Fisher''s z (Spearman rho)' 'p-val (parametric)' 'File'};
+              Resh = {ff 'PET Map' 'Fisher''s z (Spearman rho)' 'File'};
         else
-            Resh = {ff 'PET Map' 'Mean Fisher''s z (Spearman rho)' 'p-val (parametric)' 'File'};
+             Resh = {ff 'PET Map' 'Mean Fisher''s z (Spearman rho)' 'File'};
         end
     case 2
         if options(1)<4
-            Resh = {ff 'PET Map' 'Fisher''s z (Pearson r)' 'p-val (parametric)' 'File'};
+             Resh = {ff 'PET Map' 'Fisher''s z (Pearson r)' 'File'};
         else
-            Resh = {ff 'PET Map' 'Mean Fisher''s z (Pearson r)' 'p-val (parametric)' 'File'};
+             Resh = {ff 'PET Map' 'Mean Fisher''s z (Pearson r)' 'File'};
         end
     otherwise
-        Resh = {'File' 'PET Map' 'Mean Beta' 'p-val (Regression analysis)' 'File'};
+             Resh = {'File' 'PET Map' 'Mean Beta' 'File'};
 end
 
 for i = 1:size(res,1)
@@ -268,12 +269,12 @@ for i = 1:size(res,1)
        Resh{end+1,1} = ff; %[ff ' ' num2str(i)];
        Resh{end,2} = Rec_list{j};
        Resh{end,3} = res(i,j);
-       if p_all(i,j)<.001
-           p_i_j = '<.001';
-       else
-           p_i_j = num2str(p_all(i,j));
-       end
-       Resh{end,4} = p_i_j;
+%        if p_all(i,j)<.001
+%            p_i_j = '<.001';
+%        else
+%            p_i_j = num2str(p_all(i,j));
+%        end
+%        Resh{end,4} = p_i_j;
        Resh{end,5} = list1{i};
     end
 end
