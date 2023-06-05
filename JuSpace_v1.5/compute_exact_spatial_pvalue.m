@@ -27,6 +27,10 @@ path_ju = fileparts(which('JuSpace'));
 [dd,atlas_name] = fileparts(atlas);
 path_maps = fullfile(path_ju,'nullMaps',atlas_name);
 
+if not(isfolder(path_maps))
+    mkdir(path_maps)
+end
+
  for i = 1:length(filesPET)
     [dd,PET_name] = fileparts(filesPET{i});
     null_path = fullfile(path_maps,[PET_name '.mat']);
