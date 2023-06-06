@@ -16,7 +16,8 @@ This is the repository for the JuSpace toolbox allowing for cross-modal correlat
 
 |===================================================================|
  
- 
+ ![image](https://github.com/juryxy/JuSpace/assets/54351124/3dc7a76b-0be5-4773-8025-b9b089bf195a)
+
  
  
 Created by Juergen Dukart, at INM7, Research Center Jülich, Jülich, Germany
