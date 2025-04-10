@@ -1,0 +1,80 @@
+References/sources (please cite the below references if you use the respective maps). Please also note that some of the PET maps are released under specific licenses that are provided at the end of the respective reference: 
+
+CBF (ASL_MRI: Cerebral Blood Flow): Citation: Holiga et al. 2018, Plos One, doi: 10.1371/journal.pone.0206583
+
+GABAa (FLUMAZENIL_c11): Citation: Dukart et al. 2018, Scientific Reports, doi:10.1038/s41598-018-22444-0
+GABAa (flumazenil_hc16_norgaard): Norgaard et al.  (2021). "A high-resolution in vivo atlas of the human brain's benzodiazepine binding site of GABAA receptors.", NeuroImage, doi:10.1016/j.neuroimage.2021.117878, license: https://xtra.nru.dk/BZR-atlas/
+
+D1 (SCH23390_c1): Citation: https://www.ncbi.nlm.nih.gov/pubmed/28197685
+
+D2 (Raclopride): https://datadryad.org/resource/doi:10.5061/dryad.rc073 Citation: Long-term test–retest reliability of striatal and extrastriatal dopamine D2/3 receptor binding: study with [11C]raclopride and high-resolution PET
+D2 (fallypride_hc49_jaworska): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+
+DAT (DATSPECT): Citation: Dukart et al. 2018, Scientific Reports,  doi:10.1038/s41598-018-22444-0
+
+NAT (MRB_c11): Citation: https://www.ncbi.nlm.nih.gov/pubmed/28066877
+
+SERT (MADAM_c11): https://www.nitrc.org/projects/ki-5htt
+SERT (dasb_hc100_beliveau): Beliveau et al. (2017). "A High-Resolution In Vivo Atlas of the Human Brain's Serotonin System.", Journal of Neuroscience, doi: 10.1523/JNEUROSCI.2830-16.2016. LICENSE: https://xtra.nru.dk/FS5ht-atlas/
+SERT_DASB (5HTT): https://neurovault.org/collections/1206/   Citation: Savli, M. et al. (2012).NeuroImage, 63(1), 447–459. doi:10.1016/j.neuroimage.2012.07.001 
+
+F-Dopa: https://www.nitrc.org/projects/spmtemplates/ (García-Gómez FJ, et al. Elaboration of the SPM template for the standardization of SPECT images with 123I-Ioflupane. Rev Esp Med Nucl Imagen Mol. 2013;32:350-6).
+
+5HT1a: https://neurovault.org/collections/1206/   Citation: Savli, M. et al. (2012).NeuroImage, 63(1), 447–459. doi:10.1016/j.neuroimage.2012.07.001
+5HT1a (cumi_hc8_beliveau): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+
+5HT1b: https://neurovault.org/collections/1206/   Citation: Savli, M. et al. (2012).NeuroImage, 63(1), 447–459. doi:10.1016/j.neuroimage.2012.07.001 
+5HT1b (az_hc36_beliveau): Beliveau et al. (2017). "A High-Resolution In Vivo Atlas of the Human Brain's Serotonin System.", Journal of Neuroscience, doi: 10.1523/JNEUROSCI.2830-16.2016. LICENSE: https://xtra.nru.dk/FS5ht-atlas/
+
+5HT2a: https://neurovault.org/collections/1206/   Citation: Savli, M. et al. (2012).NeuroImage, 63(1), 447–459. doi:10.1016/j.neuroimage.2012.07.001 
+5HT2a (cimbi_hc29_beliveau): Beliveau et al. (2017). "A High-Resolution In Vivo Atlas of the Human Brain's Serotonin System.", Journal of Neuroscience, doi: 10.1523/JNEUROSCI.2830-16.2016. LICENSE: https://xtra.nru.dk/FS5ht-atlas/
+
+5HT4 (sb20_hc59_beliveau): Beliveau et al. (2017). "A High-Resolution In Vivo Atlas of the Human Brain's Serotonin System.", Journal of Neuroscience, doi: 10.1523/JNEUROSCI.2830-16.2016. LICENSE: https://xtra.nru.dk/FS5ht-atlas/
+
+MU (CARFENTANIL_c11): https://identifiers.org/neurovault.image:303255	Citation: Kantonen, T. et al. (2020). NeuroImage, 116922. doi:10.1016/j.neuroimage.2020.116922
+MU (carfentanil_hc39_turtonen): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+
+Kappa opiod (KappaOp_LY2795050_10m_ShokriKojori): Shokri-Kojori, E.et al. 2022. Brain opioid segments and striatal patterns of dopamine release induced by naloxone and morphine. Human Brain Mapping, 43(4), pp.1419-1430source:https://github.com/eshoko/OPIOID, license: Attribution-NonCommercial-ShareAlike 4.0 International
+
+mGluR5 (abp_hc22_rosanetto): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+mGluR5 (abp_hc28_dubois): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+mGluR5 (abp_hc73_smart): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336 , license: Attribution-NonCommercial-ShareAlike 4.0 International
+
+CB1: Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+
+VAChT (feobv_hc4_tuominen): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+VAChT (feobv_hc18_aghourian): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+VAChT (feobv_hc5_bedard): Hansen, J. Y., et al.  (2021). "Mapping neurotransmitter systems to the structural and functional organization of the human neocortex.", Bioarxiv, doi:10.1101/2021.10.28.466336, license: Attribution-NonCommercial-ShareAlike 4.0 International
+
+NMDA (ge179_29hc_galovic2021): Galovic et al. (2021) "In vivo NMDA receptor function in people with NMDA receptor antibody encephalitis", medrxiv, doi: 10.1101/2021.12.04.21267226, license: Attribution-NonCommercial-ShareAlike 4.0 International
+
+Added in JuSpace v2.0 (The PET maps were downloaded from https://github.com/LeonDLotter/CTdev/tree/main/data_predictors/pet) based on Lotter et al.(2024). Regional patterns of human cortex development correlate with underlying neurobiology. Nature Communications). For citation for each map see https://github.com/LeonDLotter/NiSpace-data/blob/main/reference/pet/metadata.csv
+
+5HT6_gsk215083_HC30_radhakrishnan2018
+CMRglu_fdg_HC20_castrillon2023
+COX1_ps13_HC11_kim2020
+GABAa5_ro154513_HC10_lukow2022
+HDAC_martinostat_HC8_wey2016
+KOR_ly2795050_HC28_vijay2018
+M1_lsn3172176_HC24_naganawa2020
+Microglia_TSPO_pbr28_HC6_lois2018
+MOR_carfentanil_HC39_turtonen2021
+MOR_carfentanil_HC204_kantonen2020
+SV2A_ucbj_HC10_finnema2016
+VMAT2_dtbz_HC76_larsen2020
+A4B2_flubatine_HC30_hillmer2016
+CB1_omar_HC77_normandin2015
+
+Cell type maps for glia and neurons:
+  Data source: Hawrylycz et al. (2012). "An anatomically comprehensive atlas of the adult human brain transcriptome", Nature, doi:10.1038/nature11405
+  Neuronal cell markers: Lake et al. (2016). "Neuronal subtypes and diversity revealed by single-nucleus {RNA} sequencing of the human brain", Science, doi:10.1126/science.aaf1204
+  Glial cell markers: Darmanis et al. (2015). "A survey of human brain transcriptome diversity at the single cell level", PNAS, doi:10.1073/pnas.1507125112
+  Originally used in: Lotter et al. (2024). "Regional patterns of human cortex development correlate with underlying neurobiology", Nature Communications, doi:10.1038/s41467-024-52366-7
+  Data was downloaded from the Allen Brain Institute and processed using the abagen toolbox (Markello et l., 2021, doi:10.7554/eLife.72129) with the settings described in Lotter et al. (2024). 
+  Instead of mapping individual mRNA samples to brain regions as in Lotter et al., here, continuous maps were interpolated by assigning to each voxel a distance-weighted average of its 10 nearest samples.
+  For further information regarding the cell types, see Lake et al. (2016) and Darmanis et al. (2015) as well as a summary in Lotter et al, Supplementary Data S1.
+
+Cell type maps for mitochondria:
+
+Maps are based on the publication by Mosharov, E.V., Rosenberg, A.M., Monzel, A.S. et al. A human brain map of mitochondrial respiratory capacity and diversity. Nature (2025). https://doi.org/10.1038/s41586-025-08740-6
+and were downloaded from this neurovault directory: https://neurovault.org/collections/16418/
