@@ -3,9 +3,13 @@ This is the repository for the JuSpace toolbox allowing for cross-modal correlat
 
 
 |===================================================================|
+
+
 |                        WELCOME to JuSpace v 2.0                   |
 |                                                                   |
 |                                                                   |
+
+
 |    Tool for spatial correlation analyses of magnetic resonance    |
 |    		imaging data with positron emission                 |
 |                 tomography derived receptor maps                  |
