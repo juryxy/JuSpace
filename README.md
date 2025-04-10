@@ -120,8 +120,9 @@ Version history:
 
 10.04.2025 - Version 2.0 release
 - New modern UI
-- New visualization functionalities
-- Multiple linear regression now displays/computes standardized beta coefficients
 - Added many new PET maps (see sources_template_release)
 - Added different cell atlases (see sources_template_release)
+- Added FDR correction as an option
+- New visualization functionalities
+- Multiple linear regression now displays/computes standardized beta coefficients
 
