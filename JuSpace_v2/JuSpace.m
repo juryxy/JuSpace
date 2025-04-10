@@ -8,6 +8,7 @@ classdef JuSpace < matlab.apps.AppBase
         Tab1                           matlab.ui.container.Tab
         Tab2                           matlab.ui.container.Tab
         Tab3                           matlab.ui.container.Tab
+        LogoImage                      matlab.ui.control.Image
 
         % Tab 1 components
         AtlasLabel                     matlab.ui.control.Label
@@ -576,12 +577,23 @@ classdef JuSpace < matlab.apps.AppBase
     methods (Access = private)
         function createComponents(app)
             warning off
+            
+            if isdeployed
+                 [~, ~] = system('path');
+                 app.dir_tool = pwd; 
+            else
+                 app.dir_tool= fileparts(which('JuSpace'));
+            end
 
+
+     
             % Main UI figure
             app.UIFigure = uifigure('Name', 'JuSpace 2.0', 'Position', [100, 100, 900, 600], 'Color', [0.96 0.96 0.98], 'AutoResizeChildren','on');
             fileMenu = uimenu(app.UIFigure, 'Text', 'File');
             uimenu(fileMenu, 'Text', 'Load Existing Analysis...','MenuSelectedFcn', @(src, event) loadAnalysis(app));
             uimenu(fileMenu, 'Text', 'Save Analysis Settings...', 'MenuSelectedFcn', @(src, event) saveAnalysis(app));
+            app.LogoImage = uiimage(app.UIFigure, 'ImageSource', fullfile(app.dir_tool,'splash.png'),'Position', [420, 1, 60, 60]);  
+
             % Tab Group
             app.TabGroup = uitabgroup(app.UIFigure, 'Position', [10 60 880 520],'SelectionChangedFcn', @(src,event) tabChanged(app, event));
 
@@ -624,17 +636,11 @@ classdef JuSpace < matlab.apps.AppBase
             app.SecondSetLabel = uilabel(app.Tab1, 'Text', 'Second Set Images:', 'Position', [450, 260, 340, 20],'FontWeight', 'bold');
             app.SecondSetListBox = uilistbox(app.Tab1,'Items',{''}, 'Position', [450, 30, 380, 220]);
             app.SecondSetButton.Enable = 'off';
-            
+
+            % Components in Tab 2 
             % Tab 2
             app.Tab2 = uitab(app.TabGroup, 'Title', 'Templates & Metrics');
 
-            % Components in Tab 2 (new arrangement)
-            if isdeployed
-                 [~, ~] = system('path');
-                 app.dir_tool = pwd; 
-            else
-                 app.dir_tool= fileparts(which('JuSpace'));
-            end
 
             dir_PET = fullfile(app.dir_tool,'PETatlas');
             files_PET = select_con_maps_forfMRI_my(dir_PET,'PETatlas','.*.nii');
@@ -703,6 +709,7 @@ classdef JuSpace < matlab.apps.AppBase
             % Navigation Buttons
             app.PrevTabButton = uibutton(app.UIFigure, 'push', 'Text', 'Previous', 'Position', [10, 20, 100, 30], 'ButtonPushedFcn', @(src,event) app.prevTab(event));
             app.NextTabButton = uibutton(app.UIFigure, 'push', 'Text', 'Next', 'Position', [790, 20, 100, 30], 'ButtonPushedFcn', @(src,event) app.nextTab(event));
+            
         end
     end
         
