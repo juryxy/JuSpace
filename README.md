@@ -12,8 +12,8 @@ We now also provide a standalone version of JuSpace for Windows and Linux. As it
 |                                                                   |
 |                                                                   |
 |    Tool for spatial correlation analyses of magnetic resonance    |
-|    		     imaging data with positron emission                |
-|                 tomography derived receptor maps                  |
+|    		  imaging data with positron emission               |
+|                   tomography derived receptor maps                |
 |                                                                   |
 |===================================================================|
 ```
