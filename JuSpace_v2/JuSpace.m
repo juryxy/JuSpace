@@ -466,8 +466,13 @@ classdef JuSpace < matlab.apps.AppBase
             set(ax, 'XTickLabel', app.FigureNeuro.XTickLabel);
             set(ax, 'FontSize', app.FigureNeuro.FontSize);
             set(ax, 'XTickLabelRotation', app.FigureNeuro.XTickLabelRotation);
+
+            if strcmp(plot_opt,'Scatter plot')
+                grid on
+            end
+
             try
-            legend(ax, app.FigureNeuro.Legend.String, 'Location', 'eastoutside');
+            legend(ax, app.FigureNeuro.Legend.String, 'Location', 'northeastoutside');
             catch
             end
             grid on
