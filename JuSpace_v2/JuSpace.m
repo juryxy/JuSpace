@@ -684,7 +684,7 @@ classdef JuSpace < matlab.apps.AppBase
             app.RunAnalysisButton = uibutton(app.Tab2,'push','Text','Run Analysis','Position',[20,20,840,40],'BackgroundColor',[0.2 0.6 0.8],'FontColor','white', 'ButtonPushedFcn', @(src, event) run_analysis(app));
             app.RunAnalysisButton.Enable = 'off';
             
-            app.InstructionsLabel = uilabel(app.Tab2, 'Text', sprintf('To (un)select multiple images \nkeep CTRL key pressed'), 'Position', [600, 70, 200, 33]);
+            app.InstructionsLabel = uilabel(app.Tab2, 'Text', sprintf('Please cite the reference for each image as described in \nsources_template_release.txt. \nTo (un)select multiple images keep CTRL key pressed'), 'Position', [550, 60, 330, 50]);
             
             % Tab 3
             app.Tab3 = uitab(app.TabGroup, 'Title', 'Results');
