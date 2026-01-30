@@ -481,8 +481,14 @@ classdef JuSpace < matlab.apps.AppBase
             
             if strcmp(plot_opt,'Scatter plot')
                 print(f,fullfile(app.Results.dir_save,['Scatter_' app.NameSaveField.Value  '_' time_now '.png']),'-dpng','-r300');
+                f.Visible='on';
+                savefig(f,fullfile(app.Results.dir_save,['Scatter_' app.NameSaveField.Value  '_' time_now '.fig']));
+                f.Visible='off';
             else
                 print(f,fullfile(app.Results.dir_save,['Bar_' app.NameSaveField.Value  '_' time_now '.png']),'-dpng','-r300');
+                f.Visible='on';
+                saveas(f,fullfile(app.Results.dir_save,['Bar_' app.NameSaveField.Value  '_' time_now '.fig']),'fig');
+                f.Visible='off';
             end
 
             close(f);
