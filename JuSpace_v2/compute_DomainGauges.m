@@ -56,7 +56,7 @@ else
     D2 = [];
 end
 
-data_PET = mean_time_course(files_PET,atlas,atlas_vals);
+data_PET = mean_time_course(files_PET,atlas,atlas_vals, 1);
 
 if options(4)==1 % adjust for structural correlation
     if isdeployed
