@@ -125,3 +125,6 @@ A list of anatomical labels for the for the included neuromorphometrics (asymetr
 - New visualization functionalities
 - Multiple linear regression now displays/computes standardized beta coefficients
 
+25.02.2026
+- fixed a bug in loading PET template values when using atlases that contained outside negative values (now excludes those values from regional mean computation).
+
