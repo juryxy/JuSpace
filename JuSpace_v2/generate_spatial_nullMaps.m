@@ -9,6 +9,8 @@ function [data_permuted] = generate_spatial_nullMaps(atlas,data,N,opt_symmetry)
 Y = spm_read_vols(spm_vol(atlas));
 data_PET = data;
 
+data_PET(isnan(data_PET)) = nanmean(data_PET);
+
 [a,b,c] = unique(Y(:));
 
 
