@@ -1,26 +1,33 @@
-function [img3d] = resize_img_useTemp_imcalc(file, template)
-    % Load input and template NIfTI images
-
-    inputVol = spm_read_vols(spm_vol(file));
-    templateVol = spm_read_vols(spm_vol(template));
-
-    % Determine the target size (dimensions) from template
-    targetSize = size(templateVol);
-
-    % Resize the input volume to match the template size
-    [img3d]  = resize3Dvolume(inputVol, targetSize);
-    disp('Resize successful')
-end
+function [img3d] = resize_img_useTemp_imcalc(file,temp)
+% function [img3d] = resize_img_useTemp_imcalc(file,temp,opt_save)
+%-----------------------------------------------------------------------
+% Job saved on 15-Jul-2015 09:33:17 by cfg_util (rev $Rev: 6134 $)
+% spm SPM - SPM12 (6225)
+% cfg_basicio BasicIO - Unknown
+%-----------------------------------------------------------------------
 
 
-function resizedVol = resize3Dvolume(vol, targetSize)
-    % vol: 3D input array
-    % targetSize: [nx, ny, nz] new size
+[path] = fileparts(file);
+
+file_temp = char(append_prefix_to_fileNames_my(file,'rmyTemp'));
+matlabbatch{1}.spm.util.imcalc.input = {
+                                        temp
+                                        file
+                                        };
+matlabbatch{1}.spm.util.imcalc.output = file_temp;
+matlabbatch{1}.spm.util.imcalc.outdir = {path};
+matlabbatch{1}.spm.util.imcalc.expression = 'i2';
+matlabbatch{1}.spm.util.imcalc.var = struct('name', {}, 'value', {});
+matlabbatch{1}.spm.util.imcalc.options.dmtx = 0;
+matlabbatch{1}.spm.util.imcalc.options.mask = 0;
+matlabbatch{1}.spm.util.imcalc.options.interp = 0;
+matlabbatch{1}.spm.util.imcalc.options.dtype = 4;
+spm_jobman('run',matlabbatch);
+
+img3d = spm_read_vols(spm_vol(file_temp));
+% if opt_save == 1
+% else
     
-    [X, Y, Z] = ndgrid(...
-        linspace(1, size(vol,1), targetSize(1)), ...
-        linspace(1, size(vol,2), targetSize(2)), ...
-        linspace(1, size(vol,3), targetSize(3)));
-    
-    resizedVol = interp3(vol, Y, X, Z, 'nearest', 0);  % 'linear' or 'nearest'
-end
+file_temp = regexprep(file_temp,',1','');
+delete(file_temp);
+% end
