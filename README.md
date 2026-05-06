@@ -129,3 +129,6 @@ A list of anatomical labels for the for the included neuromorphometrics (asymetr
 - fixed a bug in loading PET template values when using atlases that contained outside negative values (now excludes those values from regional mean computation).
 - some PET atlases contained negative values outside the brain. Replaced all values by NaN to avoid leakage.
 
+06.05.2026
+- fixed a bug in resizing custom atlases.
+
