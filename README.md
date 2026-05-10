@@ -7,7 +7,7 @@ We now also provide a standalone version of JuSpace for Windows and Linux. As it
 |===================================================================|
 |                                                                   |
 |                                                                   |
-|                      WELCOME to JuSpace v2.0                      |
+|                      WELCOME to JuSpace v2.1                     |
 |                                                                   |
 |                                                                   |
 |                                                                   |
