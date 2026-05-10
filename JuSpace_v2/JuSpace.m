@@ -575,7 +575,7 @@ classdef JuSpace < matlab.apps.AppBase
         function saveAnalysis(app)
          
             Results = app.Results;
-            % Results.JuSpace_version = 'v2.0';
+            % Results.JuSpace_version = 'v2.1';
             % file_save = fullfile(path,file);
             % save(file_save,'Results','app_save');
             save_results(Results,app);
@@ -599,7 +599,7 @@ classdef JuSpace < matlab.apps.AppBase
 
      
             % Main UI figure
-            app.UIFigure = uifigure('Name', 'JuSpace 2.0', 'Position', [100, 100, 900, 600], 'Color', [0.96 0.96 0.98], 'AutoResizeChildren','on');
+            app.UIFigure = uifigure('Name', 'JuSpace 2.1', 'Position', [100, 100, 900, 600], 'Color', [0.96 0.96 0.98], 'AutoResizeChildren','on');
             fileMenu = uimenu(app.UIFigure, 'Text', 'File');
             uimenu(fileMenu, 'Text', 'Load Existing Analysis...','MenuSelectedFcn', @(src, event) loadAnalysis(app));
             uimenu(fileMenu, 'Text', 'Save Analysis Settings...', 'MenuSelectedFcn', @(src, event) saveAnalysis(app));
@@ -795,7 +795,7 @@ end
     
     function save_results(Results,app,name_save)
        
-            Results.JuSpace_version = 'v2.0';
+            Results.JuSpace_version = 'v2.1';
 
             % Save Tab 1
             app_save.AtlasDropDown.Items = app.AtlasDropDown.Items;
@@ -1033,8 +1033,10 @@ end
 
         % plot first one only
         for j = 1:size(data_PET,1)
-                x = data_PET(j,:);
-                y = data(1,:);
+
+                xx = removenan_my([data_PET(j,:)' data(1,:)']);
+                x = xx(:,1);
+                y = xx(:,2);
                 if opt_rank == 1
                     x = tiedrank(x);
                     y = tiedrank(y);
@@ -1047,8 +1049,9 @@ end
 
         for j = 1:size(data_PET,1)
               for i = 2:size(data,1)
-                x = data_PET(j,:);
-                y = data(i,:);
+                xx = removenan_my([data_PET(j,:)' data(i,:)']);
+                x = xx(:,1);
+                y = xx(:,2);
                 if opt_rank == 1
                     x = tiedrank(x);
                     y = tiedrank(y);
@@ -1059,8 +1062,9 @@ end
         
       for j = 1:size(data_PET,1)
                 for i = 1:size(data,1)
-                x = data_PET(j,:);
-                y = data(i,:);
+                xx = removenan_my([data_PET(j,:)' data(i,:)']);
+                x = xx(:,1);
+                y = xx(:,2);
                 if opt_rank == 1
                     x = tiedrank(x);
                     y = tiedrank(y);
