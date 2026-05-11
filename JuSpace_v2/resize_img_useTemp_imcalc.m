@@ -9,21 +9,19 @@ function [img3d]  = resize_img_useTemp_imcalc(file, template)
 %   img3d    : source image resampled onto template voxel grid
 %
 % Requires MATLAB's niftiinfo/niftiread. Uses no SPM internal functions.
+% Uses nearest-neighbor assignment.
 
-    % Read source and template headers/images
     srcInfo = niftiinfo(file);
     tmplInfo = niftiinfo(template);
 
-    srcImg = double(niftiread(srcInfo));
+    srcImg = niftiread(srcInfo);
 
-    % Build voxel-to-world affine matrices
     srcMat  = local_nifti_affine(srcInfo);
     tmplMat = local_nifti_affine(tmplInfo);
 
     srcDim = size(srcImg);
     outDim = double(tmplInfo.ImageSize(1:3));
 
-    % Handle possible 2D NIfTI edge case
     if numel(srcDim) < 3
         srcDim(3) = 1;
     end
@@ -31,7 +29,6 @@ function [img3d]  = resize_img_useTemp_imcalc(file, template)
         outDim(3) = 1;
     end
 
-    % Output voxel grid in MATLAB/SPM-style 1-based voxel coordinates
     [Xo, Yo, Zo] = ndgrid( ...
         1:outDim(1), ...
         1:outDim(2), ...
@@ -44,63 +41,53 @@ function [img3d]  = resize_img_useTemp_imcalc(file, template)
         ones(1, numel(Xo))
     ];
 
-    % Core SPM-equivalent mapping:
-    %
-    % input_voxel = inv(srcMat) * tmplMat * output_voxel
-    %
-    % This maps every template voxel to the corresponding floating-point
-    % source voxel coordinate, including origin, orientation, voxel size,
-    % translation, and flips encoded in the NIfTI affine.
+    % Map template voxel coordinates to source voxel coordinates.
     Pin = srcMat \ (tmplMat * Pout);
 
     Xi = reshape(Pin(1,:), outDim);
     Yi = reshape(Pin(2,:), outDim);
     Zi = reshape(Pin(3,:), outDim);
 
-    % Input grid
-    [Xin, Yin, Zin] = ndgrid( ...
-        1:srcDim(1), ...
-        1:srcDim(2), ...
-        1:srcDim(3));
+    % Nearest-neighbor voxel assignment
+    Xi = round(Xi);
+    Yi = round(Yi);
+    Zi = round(Zi);
 
-    % Interpolate source image onto template grid
-    img3d = interpn( ...
-        Xin, Yin, Zin, ...
-        srcImg, ...
-        Xi, Yi, Zi, ...
-        'linear', ...
-        0);
+    img3d = zeros(outDim, 'like', srcImg);
+
+    valid = ...
+        Xi >= 1 & Xi <= srcDim(1) & ...
+        Yi >= 1 & Yi <= srcDim(2) & ...
+        Zi >= 1 & Zi <= srcDim(3);
+
+    srcIdx = sub2ind( ...
+        srcDim(1:3), ...
+        Xi(valid), ...
+        Yi(valid), ...
+        Zi(valid));
+
+    img3d(valid) = srcImg(srcIdx);
 end
 
 
 function M = local_nifti_affine(info)
 %LOCAL_NIFTI_AFFINE Return 4x4 voxel-to-world affine from niftiinfo output.
 %
-% MATLAB stores NIfTI transforms as affine3d objects where the matrix is
-% commonly arranged for row-vector multiplication. This helper converts it
-% to the column-vector convention:
+% Returns affine in column-vector convention:
 %
 %   world = M * [i; j; k; 1]
 %
-% with 1-based voxel coordinates, matching the SPM-style mapping above.
+% using MATLAB/SPM-style 1-based voxel coordinates.
 
     if isfield(info, 'Transform') && ~isempty(info.Transform)
         T = info.Transform.T';
 
-        % MATLAB's nifti transform is usually 0-based voxel-index oriented.
-        % Convert to 1-based voxel coordinates:
-        %
-        % world = T * ([i; j; k; 1] - [1; 1; 1; 0])
-        %
+        % Convert MATLAB/NIfTI 0-based voxel transform to 1-based voxel coords.
         shift = eye(4);
         shift(1:3,4) = -1;
 
         M = T * shift;
-
     else
-        % Fallback: construct a simple affine from PixelDimensions.
-        % This is less informative because it has no true scanner-space
-        % origin or rotation.
         pixdim = double(info.PixelDimensions(1:3));
 
         M = eye(4);
