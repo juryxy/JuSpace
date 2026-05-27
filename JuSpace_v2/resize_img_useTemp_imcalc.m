@@ -11,6 +11,20 @@ function [img3d]  = resize_img_useTemp_imcalc(file, template)
 % Requires MATLAB's niftiinfo/niftiread. Uses no SPM internal functions.
 % Uses nearest-neighbor assignment.
 
+
+file_check = contains(file,'.nii,');
+temp_check = contains(template,'.nii,');
+
+if file_check
+file = strrep(file,',1','');
+end
+
+if temp_check
+template = strrep(template,',1','');
+end
+
+
+
     srcInfo = niftiinfo(file);
     tmplInfo = niftiinfo(template);
 
