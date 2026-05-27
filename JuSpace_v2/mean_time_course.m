@@ -33,7 +33,7 @@ for i =1:size_data(1,1)
                 Reg_all(j) = length(Reg_j);
                 vals_reg = removenan_my(Reg_j,':');
                 if opt_PET == 1
-                    vals_reg = vals_reg(vals_reg>0);
+                    vals_reg = vals_reg(vals_reg~=0);
                 end
                 D(i,j)= mean(vals_reg);
                 %disp([num2str(length(Reg_j)) ' voxels found for file ' num2str(i)  ' region ID ' num2str(numberROIs(j)) ': ' num2str(D(i,j))]);
