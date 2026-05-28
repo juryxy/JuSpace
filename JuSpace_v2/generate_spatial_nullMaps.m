@@ -9,8 +9,6 @@ function [data_permuted] = generate_spatial_nullMaps(atlas,data,N,opt_symmetry)
 Y = spm_read_vols(spm_vol(atlas));
 data_PET = data;
 
-data_PET(isnan(data_PET)) = nanmean(data_PET);
-
 [a,b,c] = unique(Y(:));
 
 
@@ -219,9 +217,34 @@ if r>0
     end
 else
       
-      disp('Spatial autocorrelation is zero or negative, no adjustment performed')
-      for nn = 1:N
-          rr = randperm(length(data_PET));
-          data_permuted(nn,:) = data_PET(rr);
-      end
+      disp('Spatial autocorrelation is zero or negative, no adjustment performed');
+       %----------------------
+        % Create a symmetric brain and project values to both hemispheres
+        if opt_symmetry == 1
+            disp('Generating symmetric permuted maps');
+             for nn = 1:N
+                Y_half_nn = zeros(size(Y));
+                data_perm = randperm(length(data_PET));
+                data_rand = data_perm(1:length(a1_filt);
+                for ii = 1:length(a1_filt)
+                    Y_half_nn(c1==ii+1) = data_rand(ii);
+                end
+                
+                Y2 = flip(Y_half_nn);
+                YY = cat(1,Y_half_nn(1:floor(size(Y,1)./2),:,:),Y2(floor(size(Y,1)./2)+1:end,:,:));
+    
+                for ii = 1:length(a_filt)
+                    ind_ii = Y(:)==a_filt(ii);
+                    ii_sel = YY(ind_ii);
+                    data_rand_weighted_fin(ii,1) = mode(ii_sel(ii_sel~=0));
+                end
+                 %----------------------
+                data_permuted(nn,:) = data_rand_weighted_fin;
+            end
+       else
+              for nn = 1:N
+                  rr = randperm(length(data_PET));
+                  data_permuted(nn,:) = data_PET(rr);
+              end
+       end
 end
