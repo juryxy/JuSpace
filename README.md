@@ -132,4 +132,6 @@ A list of anatomical labels for the for the included neuromorphometrics (asymetr
 Version 2.1 release
 06.05.2026
 - fixed a bug in resizing custom atlases.
+29.05.2026
+  - added a fix for generating symmetric maps also when autocorrelation is negative or null
 
