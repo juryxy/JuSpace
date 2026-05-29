@@ -225,7 +225,7 @@ else
              for nn = 1:N
                 Y_half_nn = zeros(size(Y));
                 data_perm = randperm(length(data_PET));
-                data_rand = data_perm(1:length(a1_filt);
+                data_rand = data_perm(1:length(a1_filt));
                 for ii = 1:length(a1_filt)
                     Y_half_nn(c1==ii+1) = data_rand(ii);
                 end
