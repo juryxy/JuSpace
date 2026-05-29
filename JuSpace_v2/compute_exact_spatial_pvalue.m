@@ -52,7 +52,9 @@ end
  for i = 1:length(filesPET)
     [dd,PET_name] = fileparts(filesPET{i});
     null_path = fullfile(path_maps,[PET_name '.mat']);
-
+    % opts.outputDirectory = path_maps;
+    % opts.dataMapName = filesPET{i};
+    % opts.useParallel = 1;
     if exist(null_path,'file')
         data_permuted = load(null_path);
         if size(data_permuted.data_permuted,1)< Nperm
@@ -116,7 +118,6 @@ switch options(2)
         end
     case 1
         for i = 1:size(data_PET,1)
-
 %             r_i = corr(data',data_perm_all{i}','type','Spearman');
             if options(4) == 1
                 data_ij = removenan_my([data',data_perm_all{i}',T1']);
