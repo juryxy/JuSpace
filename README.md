@@ -1,7 +1,7 @@
 # JuSpace
 This is the repository for the JuSpace toolbox allowing for cross-modal correlations between imaging data and positron emission tomography derived information
 
-We now also provide a standalone version of JuSpace for Windows and Linux. As it is too big for github please reach out to me (juergen.dukart [at] gmail.com) to receive a link for download.
+We now also provide a standalone version of JuSpace for Windows and Linux. It is now (01.06.2026) also included here directly. You still need to download separately matlab runtime (s. readme files) which is however free for download.
 
 ```
 |===================================================================|
