@@ -1,5 +1,5 @@
 |===================================================================|
-|                        WELCOME to JuSpace| v2.0                   |
+|                        WELCOME to JuSpace| v2.1                  |
 |                                                                   |
 |                                                                   |
 |    Tool for spatial correlation analyses of magnetic resonance    |
